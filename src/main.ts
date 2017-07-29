@@ -1,5 +1,5 @@
-import Assertions from './Assertions'
-import Helpers from './Helpers'
+import * as Assertions from './Assertions'
+import * as Helpers from './Helpers'
 
 export default {
   Assertions,
