@@ -2,17 +2,17 @@ import { Option, _Some, _None } from '@threestup/monads'
 
 type AssertionMethod = (val: any) => boolean
 
-const assertNull: AssertionMethod = <T>(val: T | null): val is T => {
+const assertNull: AssertionMethod = <T>(val: T | null): val is null => {
   return val === null
 }
 
-const assertUndefined: AssertionMethod = <T>(val: T | undefined): val is T => {
+const assertUndefined: AssertionMethod = <T>(val: T | undefined): val is undefined => {
   return typeof val === 'undefined'
 }
 
 const assertMissing: AssertionMethod = <T>(
   val: T | undefined | null,
-): val is T => {
+): val is undefined | null => {
   return assertNull(val) || assertUndefined(val)
 }
 
