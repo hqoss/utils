@@ -1,39 +1,58 @@
-const assertNull = (val: any): boolean => {
+import { Option, _Some, _None } from '@threestup/monads'
+
+type AssertionMethod = (val: any) => boolean
+
+const assertNull: AssertionMethod = <T>(val: T | null): val is T => {
   return val === null
 }
 
-const assertUndefined = (val: any): boolean => {
+const assertUndefined: AssertionMethod = <T>(val: T | undefined): val is T => {
   return typeof val === 'undefined'
 }
 
-const assertNone = (val: any): boolean => {
-  return assertNull(val) && assertUndefined(val)
+const assertMissing: AssertionMethod = <T>(
+  val: T | undefined | null,
+): val is T => {
+  return assertNull(val) || assertUndefined(val)
 }
 
-const assertSome = (val: any): boolean => {
-  return assertNone(val)
+const assertPresent: AssertionMethod = <T>(
+  val: T | undefined | null,
+): val is T => {
+  return !assertMissing(val)
 }
 
-const assertObject = (val: any): boolean => {
-  return val instanceof Object
+const assertBoolean: AssertionMethod = (val: any): val is boolean => {
+  return typeof val === 'boolean'
 }
 
-const assertString = (val: any): boolean => {
+const assertObject: AssertionMethod = (val: any): val is object => {
+  return val instanceof Object // || typeof val === 'object' ??
+}
+
+const assertString: AssertionMethod = (val: any): val is string => {
   return val instanceof String
 }
 
-const assertNonEmptyString = (val: string): boolean => {
+const assertOption: AssertionMethod = <T>(
+  val: Option<T> | undefined | null,
+): val is Option<T> => {
+  return val instanceof _Some || val instanceof _None
+}
+
+const assertNonEmptyString: AssertionMethod = (val: any): val is string => {
   return assertString(val) && val.length > 0
 }
 
 export {
+  AssertionMethod,
   assertNull,
   assertUndefined,
-  assertNone,
-  assertSome,
+  assertMissing,
+  assertPresent,
+  assertBoolean,
   assertObject,
   assertString,
+  assertOption,
   assertNonEmptyString,
 }
-
-export type AssertionMethod = (val: any) => boolean
