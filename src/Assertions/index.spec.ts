@@ -7,15 +7,12 @@ describe('Assertions', () => {
     expected: boolean
   }
 
-  const runTests = configs => configs.forEach(config => {
-    test(`correctly evaluates for "${config.val}"`, () => {
-      if (config.throws) {
-        expect(() => config.method(config.val)).toThrow()
-      } else {
-        expect(() => config.method(config.val)).not.toThrow()
-      }
+  const runTests = (configs: AssertionConfig[]) =>
+    configs.forEach(config => {
+      test(`correctly evaluates for "${config.val}"`, () => {
+        expect(config.method(config.val)).toEqual(config.expected)
+      })
     })
-  })
 
   describe('assertNull', () => {
     const configs: AssertionConfig[] = [
@@ -69,7 +66,7 @@ describe('Assertions', () => {
       {
         method: Assertion.assertUndefined,
         val: undefined,
-        expected: false,
+        expected: true,
       },
       {
         method: Assertion.assertUndefined,

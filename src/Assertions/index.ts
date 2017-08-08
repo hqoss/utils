@@ -6,7 +6,9 @@ const assertNull: AssertionMethod = <T>(val: T | null): val is null => {
   return val === null
 }
 
-const assertUndefined: AssertionMethod = <T>(val: T | undefined): val is undefined => {
+const assertUndefined: AssertionMethod = <T>(
+  val: T | undefined,
+): val is undefined => {
   return typeof val === 'undefined'
 }
 
@@ -35,7 +37,7 @@ const assertString: AssertionMethod = (val: any): val is string => {
 }
 
 const assertOption: AssertionMethod = <T>(
-  val: Option<T> | undefined | null,
+  val: Option<T> | any | undefined | null,
 ): val is Option<T> => {
   return val instanceof _Some || val instanceof _None
 }

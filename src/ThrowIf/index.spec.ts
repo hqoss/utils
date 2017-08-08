@@ -1,21 +1,22 @@
 import * as ThrowIf from '.'
 
 describe('Assertions', () => {
-  interface AssertionConfig {
+  interface ThrowIfConfig {
     method: ThrowIf.ThrowableMethod
     val: any
     throws: boolean
   }
 
-  const runTests = configs => configs.forEach(config => {
-    test(`correctly evaluates for "${config.val}"`, () => {
-      if (config.throws) {
-        expect(() => config.method(config.val)).toThrow()
-      } else {
-        expect(() => config.method(config.val)).not.toThrow()
-      }
+  const runTests = (configs: ThrowIfConfig[]) =>
+    configs.forEach(config => {
+      test(`correctly evaluates for "${config.val}"`, () => {
+        if (config.throws) {
+          expect(() => config.method(config.val)).toThrow()
+        } else {
+          expect(() => config.method(config.val)).not.toThrow()
+        }
+      })
     })
-  })
 
   describe('throwIfMissing', () => {
     const configs = [
