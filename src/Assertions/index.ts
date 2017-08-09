@@ -37,7 +37,7 @@ const assertObject: AssertionMethod = (val: any): val is object => {
 }
 
 const assertString: AssertionMethod = (val: any): val is string => {
-  return val instanceof String
+  return typeof val === 'string'
 }
 
 const assertOption: AssertionMethod = <T>(

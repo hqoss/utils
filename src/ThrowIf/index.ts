@@ -13,7 +13,7 @@ const makeThrowable = (
     if (error instanceof Error) {
       throw error
     } else {
-      throw new Error(
+      throw new TypeError(
         `Error – expected ${expectedType}, instead got ${typeof val}`,
       )
     }
@@ -22,23 +22,23 @@ const makeThrowable = (
 
 const throwIfMissing: ThrowableMethod = makeThrowable(
   Assertion.assertPresent,
-  'something',
+  'Something',
 )
 const throwIfNotBoolean: ThrowableMethod = makeThrowable(
   Assertion.assertBoolean,
-  'boolean',
+  'Boolean',
 )
 const throwIfNotObject: ThrowableMethod = makeThrowable(
   Assertion.assertObject,
-  'object',
+  'Object',
 )
 const throwIfNotString: ThrowableMethod = makeThrowable(
   Assertion.assertString,
-  'string',
+  'String',
 )
 const throwIfNotOption: ThrowableMethod = makeThrowable(
   Assertion.assertOption,
-  'option',
+  'Option',
 )
 
 export {

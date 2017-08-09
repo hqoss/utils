@@ -1,3 +1,5 @@
+import { Some, None } from '@threestup/monads'
+
 import * as Assertion from '.'
 
 import { noop } from '../Helpers'
@@ -50,6 +52,16 @@ describe('Assertions', () => {
       },
       {
         method: Assertion.assertNull,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertNull,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNull,
         val: undefined,
         expected: false,
       },
@@ -93,6 +105,16 @@ describe('Assertions', () => {
       {
         method: Assertion.assertUndefined,
         val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertUndefined,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertUndefined,
+        val: None,
         expected: false,
       },
       {
@@ -144,6 +166,16 @@ describe('Assertions', () => {
       },
       {
         method: Assertion.assertMissing,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertMissing,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertMissing,
         val: undefined,
         expected: true,
       },
@@ -187,6 +219,16 @@ describe('Assertions', () => {
       {
         method: Assertion.assertPresent,
         val: false,
+        expected: true,
+      },
+      {
+        method: Assertion.assertPresent,
+        val: Some('str'),
+        expected: true,
+      },
+      {
+        method: Assertion.assertPresent,
+        val: None,
         expected: true,
       },
       {
@@ -238,6 +280,16 @@ describe('Assertions', () => {
       },
       {
         method: Assertion.assertBoolean,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertBoolean,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertBoolean,
         val: undefined,
         expected: false,
       },
@@ -281,6 +333,16 @@ describe('Assertions', () => {
       {
         method: Assertion.assertArray,
         val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertArray,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertArray,
+        val: None,
         expected: false,
       },
       {
@@ -332,11 +394,135 @@ describe('Assertions', () => {
       },
       {
         method: Assertion.assertObject,
+        val: Some('str'),
+        expected: true,
+      },
+      {
+        method: Assertion.assertObject,
+        val: None,
+        expected: true,
+      },
+      {
+        method: Assertion.assertObject,
         val: undefined,
         expected: false,
       },
       {
         method: Assertion.assertObject,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
+  describe('assertString', () => {
+    const configs: AssertionConfig[] = [
+      {
+        method: Assertion.assertString,
+        val: '',
+        expected: true,
+      },
+      {
+        method: Assertion.assertString,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Assertion.assertString,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
+  describe('assertOption', () => {
+    const configs: AssertionConfig[] = [
+      {
+        method: Assertion.assertOption,
+        val: '',
+        expected: false,
+      },
+      {
+        method: Assertion.assertOption,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Assertion.assertOption,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Assertion.assertOption,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Assertion.assertOption,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Assertion.assertOption,
+        val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertOption,
+        val: Some('str'),
+        expected: true,
+      },
+      {
+        method: Assertion.assertOption,
+        val: None,
+        expected: true,
+      },
+      {
+        method: Assertion.assertOption,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Assertion.assertOption,
         val: null,
         expected: false,
       },
