@@ -1,10 +1,10 @@
-import { Some } from '@threestup/monads'
+import { Some, None } from '@threestup/monads'
 
 import * as ThrowIf from '.'
 
 import { noop } from '../Helpers'
 
-describe('Assertions', () => {
+describe('ThrowIf', () => {
   interface ThrowIfConfig {
     method: ThrowIf.ThrowableMethod
     val: any
@@ -16,6 +16,9 @@ describe('Assertions', () => {
       test(`correctly evaluates for "${JSON.stringify(config.val)}"`, () => {
         if (config.throws) {
           expect(() => config.method(config.val)).toThrow()
+          expect(() =>
+            config.method(config.val, new TypeError('Err!')),
+          ).toThrow(TypeError)
         } else {
           expect(() => config.method(config.val)).not.toThrow()
         }
@@ -245,6 +248,11 @@ describe('Assertions', () => {
       {
         method: ThrowIf.throwIfNotOption,
         val: Some('str'),
+        throws: false,
+      },
+      {
+        method: ThrowIf.throwIfNotOption,
+        val: None,
         throws: false,
       },
       {

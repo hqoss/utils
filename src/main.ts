@@ -1,10 +1,11 @@
-import * as Assertions from './Assertions'
-import * as Helpers from './Helpers'
+import * as Assertion from './Assertions'
+import * as Helper from './Helpers'
+import * as ThrowIf from './ThrowIf'
+
+export { Assertion, Helper, ThrowIf }
 
 export default {
-  Assertions,
-  Helpers,
+  Assertion,
+  Helper,
+  ThrowIf,
 }
-
-const main = () => console.log('Hello, World!')
-main()

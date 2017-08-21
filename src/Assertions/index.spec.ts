@@ -4,7 +4,7 @@ import * as Assertion from '.'
 
 import { noop } from '../Helpers'
 
-describe('Assertions', () => {
+describe('Assertion', () => {
   interface AssertionConfig {
     method: Assertion.AssertionMethod
     val: any
@@ -523,6 +523,63 @@ describe('Assertions', () => {
       },
       {
         method: Assertion.assertOption,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
+  describe('assertNonEmptyString', () => {
+    const configs: AssertionConfig[] = [
+      {
+        method: Assertion.assertNonEmptyString,
+        val: '',
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: 'str',
+        expected: true,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
         val: null,
         expected: false,
       },
