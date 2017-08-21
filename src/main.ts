@@ -1,11 +1,3 @@
-import * as Assertion from './Assertions'
-import * as Helper from './Helpers'
-import * as ThrowIf from './ThrowIf'
-
-export { Assertion, Helper, ThrowIf }
-
-export default {
-  Assertion,
-  Helper,
-  ThrowIf,
-}
+export * from './Assertions'
+export * from './Helpers'
+export * from './ThrowIf'
