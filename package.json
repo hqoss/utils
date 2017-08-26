@@ -5,7 +5,8 @@
   "main": "./dist/main.js",
   "typings": "./dist/main.d.ts",
   "dependencies": {
-    "@threestup/monads": "^0.1.0"
+    "@threestup/monads": "^0.1.0",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "@types/jest": "^20.0.2",
