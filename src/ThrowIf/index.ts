@@ -43,6 +43,10 @@ const throwIfNotOption: ThrowableMethod = makeThrowable(
   Assertion.assertOption,
   'Option',
 )
+const throwIfNotFunction: ThrowableMethod = makeThrowable(
+  Assertion.assertFunction,
+  'Function',
+)
 
 export {
   Constructable,
@@ -52,4 +56,5 @@ export {
   throwIfNotObject,
   throwIfNotString,
   throwIfNotOption,
+  throwIfNotFunction,
 }

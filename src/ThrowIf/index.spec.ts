@@ -16,9 +16,7 @@ describe('ThrowIf', () => {
       test(`correctly evaluates for "${JSON.stringify(config.val)}"`, () => {
         if (config.throws) {
           expect(() => config.method(config.val)).toThrow(Error)
-          expect(() =>
-            config.method(config.val, 'Err!'),
-          ).toThrow(Error)
+          expect(() => config.method(config.val, 'Err!')).toThrow(Error)
           expect(() =>
             config.method(config.val, 'Err!', ReferenceError),
           ).toThrow(ReferenceError)
@@ -273,5 +271,70 @@ describe('ThrowIf', () => {
     runTests(configs)
   })
 
-  // ... etc
+  describe('throwIfNotFunction', () => {
+    const configs = [
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: '',
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: 0,
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: noop,
+        throws: false,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: RangeError,
+        throws: false,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: new Function(),
+        throws: false,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: {},
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: [],
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: false,
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: Some('str'),
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: None,
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: undefined,
+        throws: true,
+      },
+      {
+        method: ThrowIf.throwIfNotFunction,
+        val: null,
+        throws: true,
+      },
+    ]
+
+    runTests(configs)
+  })
 })

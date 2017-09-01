@@ -25,11 +25,11 @@ const assertPresent: AssertionMethod = <T>(
 }
 
 const assertBoolean: AssertionMethod = (val: any): val is boolean => {
-  return typeof val === 'boolean'
+  return assertPresent(val) && typeof val === 'boolean'
 }
 
 const assertArray: AssertionMethod = <T>(val: T[] | any): val is T[] => {
-  return Array.isArray(val)
+  return assertPresent(val) && Array.isArray(val)
 }
 
 const assertObject: AssertionMethod = (val: any): val is object => {
@@ -37,17 +37,17 @@ const assertObject: AssertionMethod = (val: any): val is object => {
 }
 
 const assertString: AssertionMethod = (val: any): val is string => {
-  return typeof val === 'string'
+  return assertPresent(val) && typeof val === 'string'
 }
 
 const assertFunction: AssertionMethod = (val: any): val is Function => {
-  return typeof val === 'function'
+  return assertPresent(val) && typeof val === 'function'
 }
 
 const assertOption: AssertionMethod = <T>(
   val: Option<T> | any | undefined | null,
 ): val is Option<T> => {
-  return val instanceof _Some || val instanceof _None
+  return (assertPresent(val) && val instanceof _Some) || val instanceof _None
 }
 
 const assertNonEmptyString: AssertionMethod = (val: any): val is string => {
