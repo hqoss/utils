@@ -40,6 +40,10 @@ const assertString: AssertionMethod = (val: any): val is string => {
   return typeof val === 'string'
 }
 
+const assertFunction: AssertionMethod = (val: any): val is Function => {
+  return typeof val === 'function'
+}
+
 const assertOption: AssertionMethod = <T>(
   val: Option<T> | any | undefined | null,
 ): val is Option<T> => {
@@ -48,6 +52,20 @@ const assertOption: AssertionMethod = <T>(
 
 const assertNonEmptyString: AssertionMethod = (val: any): val is string => {
   return assertString(val) && val.length > 0
+}
+
+const assertNonEmptyArray: AssertionMethod = <T>(
+  val: T[] | any,
+): val is T[] => {
+  return assertArray(val) && val.length > 0
+}
+
+const assertTrue: AssertionMethod = (val: any): val is boolean => {
+  return assertBoolean(val) && val === true
+}
+
+const assertFalse: AssertionMethod = (val: any): val is boolean => {
+  return assertBoolean(val) && val === false
 }
 
 export {
@@ -60,6 +78,10 @@ export {
   assertArray,
   assertObject,
   assertString,
+  assertFunction,
   assertOption,
   assertNonEmptyString,
+  assertNonEmptyArray,
+  assertTrue,
+  assertFalse,
 }

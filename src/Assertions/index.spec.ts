@@ -474,6 +474,73 @@ describe('Assertion', () => {
     runTests(configs)
   })
 
+  describe('assertFunction', () => {
+    const configs: AssertionConfig[] = [
+      {
+        method: Assertion.assertFunction,
+        val: '',
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: noop,
+        expected: true,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: ReferenceError,
+        expected: true,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: new Error(),
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFunction,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
   describe('assertOption', () => {
     const configs: AssertionConfig[] = [
       {
@@ -575,6 +642,11 @@ describe('Assertion', () => {
       },
       {
         method: Assertion.assertNonEmptyString,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyString,
         val: undefined,
         expected: false,
       },
@@ -588,5 +660,199 @@ describe('Assertion', () => {
     runTests(configs)
   })
 
-  // ... etc
+  describe('assertNonEmptyArray', () => {
+    const configs: AssertionConfig[] = [
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: '',
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: [null],
+        expected: true,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: [undefined],
+        expected: true,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: [''],
+        expected: true,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Assertion.assertNonEmptyArray,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
+  describe('assertTrue', () => {
+    const configs: AssertionConfig[] = [
+      {
+        method: Assertion.assertTrue,
+        val: '',
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: false,
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: true,
+        expected: true,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Assertion.assertTrue,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
+  describe('assertFalse', () => {
+    const configs: AssertionConfig[] = [
+      {
+        method: Assertion.assertFalse,
+        val: '',
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: false,
+        expected: true,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: true,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: Some('str'),
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: None,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Assertion.assertFalse,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
 })

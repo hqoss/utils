@@ -15,10 +15,13 @@ describe('ThrowIf', () => {
     configs.forEach(config => {
       test(`correctly evaluates for "${JSON.stringify(config.val)}"`, () => {
         if (config.throws) {
-          expect(() => config.method(config.val)).toThrow()
+          expect(() => config.method(config.val)).toThrow(Error)
           expect(() =>
-            config.method(config.val, new TypeError('Err!')),
-          ).toThrow(TypeError)
+            config.method(config.val, 'Err!'),
+          ).toThrow(Error)
+          expect(() =>
+            config.method(config.val, 'Err!', ReferenceError),
+          ).toThrow(ReferenceError)
         } else {
           expect(() => config.method(config.val)).not.toThrow()
         }

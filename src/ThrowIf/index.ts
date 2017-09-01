@@ -1,22 +1,25 @@
 import * as Assertion from '../Assertions'
 
-type ThrowableMethod = (val: any, error?: Error) => void
+type Constructable<T = Error> = new (...params: any[]) => T
+type ThrowableMethod<T = Error> = (
+  val: any,
+  errMessage?: string,
+  err?: Constructable<T>,
+) => void
 
 const makeThrowable = (
   assertion: Assertion.AssertionMethod,
   expectedType: string,
-) => (val: any, error?: Error): void => {
+) => (val: any, errMessage: string = '', err: Constructable = Error): void => {
   const valid = assertion(val)
-  if (valid) {
+  const errorMessage = Assertion.assertNonEmptyString(errMessage)
+    ? errMessage
+    : `Error – expected "${expectedType}", instead got "${typeof val}"`
+
+  if (Assertion.assertTrue(valid)) {
     void 0
   } else {
-    if (error instanceof Error) {
-      throw error
-    } else {
-      throw new TypeError(
-        `Error – expected ${expectedType}, instead got ${typeof val}`,
-      )
-    }
+    throw new err(errorMessage)
   }
 }
 
@@ -42,6 +45,7 @@ const throwIfNotOption: ThrowableMethod = makeThrowable(
 )
 
 export {
+  Constructable,
   ThrowableMethod,
   throwIfMissing,
   throwIfNotBoolean,
