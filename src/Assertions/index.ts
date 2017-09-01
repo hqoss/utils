@@ -47,7 +47,7 @@ const assertFunction: AssertionMethod = (val: any): val is Function => {
 const assertOption: AssertionMethod = <T>(
   val: Option<T> | any | undefined | null,
 ): val is Option<T> => {
-  return (assertPresent(val) && val instanceof _Some) || val instanceof _None
+  return assertPresent(val) && (val instanceof _Some || val instanceof _None)
 }
 
 const assertNonEmptyString: AssertionMethod = (val: any): val is string => {
