@@ -1,4 +1,4 @@
-import { Option, _Some, _None } from '@threestup/monads'
+import { Option, is_some, is_none } from '@threestup/monads'
 
 type AssertionMethod = (val: any) => boolean
 
@@ -47,7 +47,7 @@ const assertFunction: AssertionMethod = (val: any): val is Function => {
 const assertOption: AssertionMethod = <T>(
   val: Option<T> | any | undefined | null,
 ): val is Option<T> => {
-  return assertPresent(val) && (val instanceof _Some || val instanceof _None)
+  return assertPresent(val) && (is_some(val) || is_none(val))
 }
 
 const assertNonEmptyString: AssertionMethod = (val: any): val is string => {
