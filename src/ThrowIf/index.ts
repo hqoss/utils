@@ -1,60 +1,179 @@
-import * as Assertion from '../Assertions'
+import * as Conditional from '../Conditionals'
+import { Conditional as ConditionalFn, Constructable } from '../types'
 
-type Constructable<T = Error> = new (...params: any[]) => T
-type ThrowableMethod<T = Error> = (
+/**
+ * Throw if a value is not of type Boolean
+ * @param  {Function} condition – Condition with `(val: any) => Boolean` signature
+ * @param  {String} expectedType – expected type, in case of Error
+ * @throws {TypeError, Error}
+ * @returns {Function} – `(val: any, errMessage?: String, err?: Function) => void | throw` signature
+ */
+const makeThrowable = (condition: ConditionalFn, expectedType: string = '') => (
   val: any,
-  errMessage?: string,
-  err?: Constructable<T>,
-) => void
+  errMessage: string = '',
+  err: Constructable<Error> = Error,
+) => {
+  if (!Conditional.isNonEmptyString(expectedType)) {
+    throw new TypeError('"expectedType" has to be a non-empty string')
+  }
 
-const makeThrowable = (
-  assertion: Assertion.AssertionMethod,
-  expectedType: string,
-) => (val: any, errMessage: string = '', err: Constructable = Error): void => {
-  const valid = assertion(val)
-  const errorMessage = Assertion.assertNonEmptyString(errMessage)
+  const valid = condition(val)
+  const errorMessage = Conditional.isNonEmptyString(errMessage)
     ? errMessage
-    : `Error – expected "${expectedType}", instead got "${typeof val}"`
+    : `Error – expected "${expectedType}", instead got "${val}: ${typeof val}"`
 
-  if (Assertion.assertTrue(valid)) {
+  if (Conditional.isTrue(valid)) {
     void 0
   } else {
     throw new err(errorMessage)
   }
 }
 
-const throwIfMissing: ThrowableMethod = makeThrowable(
-  Assertion.assertPresent,
-  'Something',
+/**
+ * Throw if a value is missing (it's null or undefined)
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfMissing = makeThrowable(Conditional.isPresent, 'Something')
+
+/**
+ * Throw if a value is not of type Boolean
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotBoolean = makeThrowable(Conditional.isBoolean, 'Boolean')
+
+/**
+ * Throw if a value is not of type Array
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotArray = makeThrowable(Conditional.isArray, 'Array')
+
+/**
+ * Throw if a value is not of type Object
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotObject = makeThrowable(Conditional.isObject, 'Object')
+
+/**
+ * Throw if a value is not of type String
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotString = makeThrowable(Conditional.isString, 'String')
+
+/**
+ * Throw if a value is not of type Number
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotNumber = makeThrowable(Conditional.isNumber, 'Number')
+
+/**
+ * Throw if a value is not of type Function
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotFunction = makeThrowable(Conditional.isFunction, 'Function')
+
+/**
+ * Throw if a value is `false`
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfFalse = makeThrowable(Conditional.isTrue, 'True')
+
+/**
+ * Throw if a value is an empty String
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfEmptyString = makeThrowable(
+  Conditional.isNonEmptyString,
+  'Non-empty String',
 )
-const throwIfNotBoolean: ThrowableMethod = makeThrowable(
-  Assertion.assertBoolean,
-  'Boolean',
+
+/**
+ * Throw if a value is an empty Array
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfEmptyArray = makeThrowable(
+  Conditional.isNonEmptyArray,
+  'Non-empty Array',
 )
-const throwIfNotObject: ThrowableMethod = makeThrowable(
-  Assertion.assertObject,
-  'Object',
+
+/**
+ * Throw if a value is not a Positive Integer
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotPositiveInteger = makeThrowable(
+  Conditional.isPositiveInteger,
+  'Positive Integer',
 )
-const throwIfNotString: ThrowableMethod = makeThrowable(
-  Assertion.assertString,
-  'String',
+
+/**
+ * Throw if a value is a Negative Integer
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNegativeInteger = makeThrowable(
+  Conditional.isNonNegativeInteger,
+  'Non-negative Integer',
 )
-const throwIfNotOption: ThrowableMethod = makeThrowable(
-  Assertion.assertOption,
-  'Option',
-)
-const throwIfNotFunction: ThrowableMethod = makeThrowable(
-  Assertion.assertFunction,
-  'Function',
+
+/**
+ * Throw if a value is not Constructable
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotConstructable = makeThrowable(
+  Conditional.isConstructable,
+  'Constructable',
 )
 
 export {
-  Constructable,
-  ThrowableMethod,
+  makeThrowable,
   throwIfMissing,
   throwIfNotBoolean,
+  throwIfNotArray,
   throwIfNotObject,
   throwIfNotString,
-  throwIfNotOption,
+  throwIfNotNumber,
   throwIfNotFunction,
+  throwIfFalse,
+  throwIfEmptyString,
+  throwIfEmptyArray,
+  throwIfNotPositiveInteger,
+  throwIfNegativeInteger,
+  throwIfNotConstructable,
 }

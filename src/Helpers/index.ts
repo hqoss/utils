@@ -1,9 +1,14 @@
-import * as moment from 'moment'
-
+/**
+ * Returns void
+ * @returns {void}
+ */
 const noop = (): void => {}
 
-const isValidISODate = (val: string): boolean => {
-  return moment(val, moment.ISO_8601, true).isValid()
-}
+/**
+ * Returns itself
+ * @param {any} val to be returned
+ * @returns {val}
+ */
+const identity = <T>(val: T): T => val
 
-export { noop, isValidISODate }
+export { noop, identity }
