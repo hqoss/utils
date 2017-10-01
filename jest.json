@@ -1,10 +1,11 @@
 {
   "collectCoverageFrom": [
     "**/*.{ts,tsx}",
+    "!src/main.ts",
+    "!src/types.ts",
     "!**/node_modules/**",
     "!**/dist/**",
-    "!**/fixture/**",
-    "!**/interface/**"
+    "!**/fixture/**"
   ],
   "testPathIgnorePatterns": [
     "<rootDir>/node_modules/",

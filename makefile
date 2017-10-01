@@ -30,4 +30,5 @@ test-ci:
 	--ci \
 	--config=${jest_config_file} \
 	--coverage \
-	--runInBand
+	--runInBand \
+	--verbose
