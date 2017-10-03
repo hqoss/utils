@@ -1,4 +1,4 @@
-import { noop, identity } from '.'
+import { noop, identity, getRandomIntInclusive } from '.'
 
 describe('Helpers', () => {
   describe('noop', () => {
@@ -12,6 +12,69 @@ describe('Helpers', () => {
     test('is a function that returns the value it receives', () => {
       expect(typeof identity).toEqual('function')
       expect(identity('Hello, World!')).toEqual('Hello, World!')
+    })
+  })
+
+  describe('getRandomIntInclusive', () => {
+    test('throws if `min` provided is not a number', () => {
+      const subjects = [
+        () => getRandomIntInclusive('Hello, World!' as any, 1),
+        () => getRandomIntInclusive(new Function() as any, 1),
+        () => getRandomIntInclusive({} as any, 1),
+        () => getRandomIntInclusive(true as any, 1),
+        () => getRandomIntInclusive(NaN as any, 1),
+      ]
+
+      subjects.forEach(subject => {
+        expect(subject).toThrow('`min` has to be a number')
+        expect(subject).toThrow(TypeError)
+      })
+    })
+
+    test('throws if `max` provided is not a number', () => {
+      const subjects = [
+        () => getRandomIntInclusive(0, 'Hello, World!' as any),
+        () => getRandomIntInclusive(0, new Function() as any),
+        () => getRandomIntInclusive(0, {} as any),
+        () => getRandomIntInclusive(0, true as any),
+        () => getRandomIntInclusive(0, NaN as any),
+      ]
+
+      subjects.forEach(subject => {
+        expect(subject).toThrow('`max` has to be a number')
+        expect(subject).toThrow(TypeError)
+      })
+    })
+
+    test('throws if `min` provided is greater than `max` provided', () => {
+      const subjects = [
+        () => getRandomIntInclusive(20, -7),
+        () => getRandomIntInclusive(-2, -5),
+        () => getRandomIntInclusive(1, 0),
+        () => getRandomIntInclusive(Infinity, Math.PI),
+      ]
+
+      subjects.forEach(subject => {
+        expect(subject).toThrow('`min` cannot be greater than `max`')
+        expect(subject).toThrow(RangeError)
+      })
+    })
+
+    test('correctly evaluates for valid scenarios', () => {
+      const scenarios = [
+        { min: 0, max: 20 },
+        { min: -10, max: 10 },
+        { min: 0, max: 0 },
+        { min: 100, max: 100 },
+        { min: 0.1, max: 1.0 },
+        { min: Math.PI, max: Infinity },
+      ]
+
+      scenarios.forEach(scenario => {
+        const subject = getRandomIntInclusive(scenario.min, scenario.max)
+        expect(subject >= scenario.min).toEqual(true)
+        expect(subject <= scenario.max).toEqual(true)
+      })
     })
   })
 })
