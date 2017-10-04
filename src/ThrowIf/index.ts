@@ -39,6 +39,15 @@ const makeThrowable = (condition: ConditionalFn, expectedType: string = '') => (
 const throwIfMissing = makeThrowable(Conditional.isPresent, 'Something')
 
 /**
+ * Throw if a value is present (it's not null or undefined)
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfPresent = makeThrowable(Conditional.isMissing, 'Nothing')
+
+/**
  * Throw if a value is not of type Boolean
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
@@ -164,6 +173,7 @@ const throwIfNotConstructable = makeThrowable(
 export {
   makeThrowable,
   throwIfMissing,
+  throwIfPresent,
   throwIfNotBoolean,
   throwIfNotArray,
   throwIfNotObject,
