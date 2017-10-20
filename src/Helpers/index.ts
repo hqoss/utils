@@ -1,4 +1,4 @@
-import { throwIfNotNumber } from '../ThrowIf'
+import { throwIfNotNumber } from "../ThrowIf"
 
 /**
  * Returns void
@@ -20,14 +20,14 @@ const identity = <T>(val: T): T => val
  * @returns {Number} random integer within the range
  */
 const getRandomIntInclusive = (min: number, max: number): number => {
-  throwIfNotNumber(min, '`min` has to be a number', TypeError)
-  throwIfNotNumber(max, '`max` has to be a number', TypeError)
+  throwIfNotNumber(min, "`min` has to be a number", TypeError)
+  throwIfNotNumber(max, "`max` has to be a number", TypeError)
 
   const minCeiled = Math.ceil(min)
   const maxFloored = Math.floor(max)
 
   if (minCeiled > maxFloored) {
-    throw new RangeError('`min` cannot be greater than `max`')
+    throw new RangeError("`min` cannot be greater than `max`")
   }
 
   // The maximum is inclusive and the minimum is inclusive

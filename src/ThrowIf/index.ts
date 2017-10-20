@@ -1,5 +1,5 @@
-import * as Conditional from '../Conditionals'
-import { Conditional as ConditionalFn, Constructable } from '../types'
+import * as Conditional from "../Conditionals"
+import { Conditional as ConditionalFn, Constructable } from "../types"
 
 /**
  * Throw if a value is not of type Boolean
@@ -8,9 +8,9 @@ import { Conditional as ConditionalFn, Constructable } from '../types'
  * @throws {TypeError, Error}
  * @returns {Function} – `(val: any, errMessage?: String, err?: Function) => void | throw` signature
  */
-const makeThrowable = (condition: ConditionalFn, expectedType: string = '') => (
+const makeThrowable = (condition: ConditionalFn, expectedType: string = "") => (
   val: any,
-  errMessage: string = '',
+  errMessage: string = "",
   err: Constructable<Error> = Error,
 ) => {
   if (!Conditional.isNonEmptyString(expectedType)) {
@@ -36,7 +36,7 @@ const makeThrowable = (condition: ConditionalFn, expectedType: string = '') => (
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfMissing = makeThrowable(Conditional.isPresent, 'Something')
+const throwIfMissing = makeThrowable(Conditional.isPresent, "Something")
 
 /**
  * Throw if a value is present (it's not null or undefined)
@@ -45,7 +45,7 @@ const throwIfMissing = makeThrowable(Conditional.isPresent, 'Something')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfPresent = makeThrowable(Conditional.isMissing, 'Nothing')
+const throwIfPresent = makeThrowable(Conditional.isMissing, "Nothing")
 
 /**
  * Throw if a value is not of type Boolean
@@ -54,7 +54,7 @@ const throwIfPresent = makeThrowable(Conditional.isMissing, 'Nothing')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotBoolean = makeThrowable(Conditional.isBoolean, 'Boolean')
+const throwIfNotBoolean = makeThrowable(Conditional.isBoolean, "Boolean")
 
 /**
  * Throw if a value is not of type Array
@@ -63,7 +63,7 @@ const throwIfNotBoolean = makeThrowable(Conditional.isBoolean, 'Boolean')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotArray = makeThrowable(Conditional.isArray, 'Array')
+const throwIfNotArray = makeThrowable(Conditional.isArray, "Array")
 
 /**
  * Throw if a value is not of type Object
@@ -72,7 +72,7 @@ const throwIfNotArray = makeThrowable(Conditional.isArray, 'Array')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotObject = makeThrowable(Conditional.isObject, 'Object')
+const throwIfNotObject = makeThrowable(Conditional.isObject, "Object")
 
 /**
  * Throw if a value is not of type String
@@ -81,7 +81,7 @@ const throwIfNotObject = makeThrowable(Conditional.isObject, 'Object')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotString = makeThrowable(Conditional.isString, 'String')
+const throwIfNotString = makeThrowable(Conditional.isString, "String")
 
 /**
  * Throw if a value is not of type Number
@@ -90,7 +90,7 @@ const throwIfNotString = makeThrowable(Conditional.isString, 'String')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotNumber = makeThrowable(Conditional.isNumber, 'Number')
+const throwIfNotNumber = makeThrowable(Conditional.isNumber, "Number")
 
 /**
  * Throw if a value is not of type Function
@@ -99,7 +99,7 @@ const throwIfNotNumber = makeThrowable(Conditional.isNumber, 'Number')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotFunction = makeThrowable(Conditional.isFunction, 'Function')
+const throwIfNotFunction = makeThrowable(Conditional.isFunction, "Function")
 
 /**
  * Throw if a value is `false`
@@ -108,7 +108,7 @@ const throwIfNotFunction = makeThrowable(Conditional.isFunction, 'Function')
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfFalse = makeThrowable(Conditional.isTrue, 'True')
+const throwIfFalse = makeThrowable(Conditional.isTrue, "True")
 
 /**
  * Throw if a value is an empty String
@@ -119,7 +119,7 @@ const throwIfFalse = makeThrowable(Conditional.isTrue, 'True')
  */
 const throwIfEmptyString = makeThrowable(
   Conditional.isNonEmptyString,
-  'Non-empty String',
+  "Non-empty String",
 )
 
 /**
@@ -131,7 +131,7 @@ const throwIfEmptyString = makeThrowable(
  */
 const throwIfEmptyArray = makeThrowable(
   Conditional.isNonEmptyArray,
-  'Non-empty Array',
+  "Non-empty Array",
 )
 
 /**
@@ -143,7 +143,7 @@ const throwIfEmptyArray = makeThrowable(
  */
 const throwIfNotPositiveInteger = makeThrowable(
   Conditional.isPositiveInteger,
-  'Positive Integer',
+  "Positive Integer",
 )
 
 /**
@@ -155,7 +155,7 @@ const throwIfNotPositiveInteger = makeThrowable(
  */
 const throwIfNegativeInteger = makeThrowable(
   Conditional.isNonNegativeInteger,
-  'Non-negative Integer',
+  "Non-negative Integer",
 )
 
 /**
@@ -167,7 +167,7 @@ const throwIfNegativeInteger = makeThrowable(
  */
 const throwIfNotConstructable = makeThrowable(
   Conditional.isConstructable,
-  'Constructable',
+  "Constructable",
 )
 
 export {

@@ -1,4 +1,4 @@
-import { Conditional, Constructable } from '../types'
+import { Conditional, Constructable } from "../types"
 
 /**
  * Find out whether value is null
@@ -15,7 +15,7 @@ const isNull: Conditional = (val: any): val is null => {
  * @returns {Boolean} true if value is null, else false
  */
 const isUndefined: Conditional = (val: any): val is undefined => {
-  return typeof val === 'undefined'
+  return typeof val === "undefined"
 }
 
 /**
@@ -42,7 +42,7 @@ const isPresent: Conditional = (val: any): boolean => {
  * @returns {Boolean} true if value is of type Boolean, else false
  */
 const isBoolean: Conditional = (val: any): val is boolean => {
-  return isPresent(val) && typeof val === 'boolean'
+  return isPresent(val) && typeof val === "boolean"
 }
 
 /**
@@ -60,7 +60,7 @@ const isArray: Conditional = (val: any): boolean => {
  * @returns {Boolean} true if value is of type Object, else false
  */
 const isObject: Conditional = (val: any): val is object => {
-  return isPresent(val) && typeof val === 'object' && !isArray(val)
+  return isPresent(val) && typeof val === "object" && !isArray(val)
 }
 
 /**
@@ -69,7 +69,7 @@ const isObject: Conditional = (val: any): val is object => {
  * @returns {Boolean} true if value is of type String, else false
  */
 const isString: Conditional = (val: any): val is string => {
-  return isPresent(val) && typeof val === 'string'
+  return isPresent(val) && typeof val === "string"
 }
 
 /**
@@ -78,7 +78,7 @@ const isString: Conditional = (val: any): val is string => {
  * @returns {Boolean} true if value is of type Number, else false
  */
 const isNumber: Conditional = (val: any): val is number => {
-  return isPresent(val) && typeof val === 'number' && !Number.isNaN(val)
+  return isPresent(val) && typeof val === "number" && !Number.isNaN(val)
 }
 
 /**
@@ -87,7 +87,7 @@ const isNumber: Conditional = (val: any): val is number => {
  * @returns {Boolean} true if value is of type Function, else false
  */
 const isFunction: Conditional = (val: any): val is Function => {
-  return isPresent(val) && typeof val === 'function'
+  return isPresent(val) && typeof val === "function"
 }
 
 /**
@@ -167,7 +167,7 @@ const isConstructable: Conditional = (val: any): val is Constructable => {
       result = true
     } catch (err) {
       result = !isNonNegativeInteger(
-        err.message.indexOf('is not a constructor'),
+        err.message.indexOf("is not a constructor"),
       )
     }
   }

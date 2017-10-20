@@ -1,8 +1,8 @@
-import * as Conditional from '.'
-import { noop } from '../Helpers'
-import { Conditional as ConditionalFn } from '../types'
+import * as Conditional from "."
+import { noop } from "../Helpers"
+import { Conditional as ConditionalFn } from "../types"
 
-describe('Conditionals', () => {
+describe("Conditionals", () => {
   interface ConditionalConfig {
     args?: Array<any>
     method: ConditionalFn
@@ -25,11 +25,11 @@ describe('Conditionals', () => {
       }
     })
 
-  describe('isNull', () => {
+  describe("isNull", () => {
     const configs = [
       {
         method: Conditional.isNull,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -72,11 +72,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isUndefined', () => {
+  describe("isUndefined", () => {
     const configs = [
       {
         method: Conditional.isUndefined,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -119,11 +119,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isMissing', () => {
+  describe("isMissing", () => {
     const configs = [
       {
         method: Conditional.isMissing,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -166,11 +166,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isPresent', () => {
+  describe("isPresent", () => {
     const configs = [
       {
         method: Conditional.isPresent,
-        val: '',
+        val: "",
         expected: true,
       },
       {
@@ -213,11 +213,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isBoolean', () => {
+  describe("isBoolean", () => {
     const configs = [
       {
         method: Conditional.isBoolean,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -260,11 +260,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isArray', () => {
+  describe("isArray", () => {
     const configs = [
       {
         method: Conditional.isArray,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -307,11 +307,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isObject', () => {
+  describe("isObject", () => {
     const configs = [
       {
         method: Conditional.isObject,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -354,11 +354,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isString', () => {
+  describe("isString", () => {
     const configs = [
       {
         method: Conditional.isString,
-        val: '',
+        val: "",
         expected: true,
       },
       {
@@ -401,11 +401,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isNumber', () => {
+  describe("isNumber", () => {
     const configs = [
       {
         method: Conditional.isNumber,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -445,7 +445,7 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.isNumber,
-        val: '42',
+        val: "42",
         expected: false,
       },
       {
@@ -468,11 +468,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isFunction', () => {
+  describe("isFunction", () => {
     const configs = [
       {
         method: Conditional.isFunction,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -520,16 +520,16 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isNonEmptyString', () => {
+  describe("isNonEmptyString", () => {
     const configs = [
       {
         method: Conditional.isNonEmptyString,
-        val: '',
+        val: "",
         expected: false,
       },
       {
         method: Conditional.isNonEmptyString,
-        val: 'str',
+        val: "str",
         expected: true,
       },
       {
@@ -572,11 +572,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isNonEmptyArray', () => {
+  describe("isNonEmptyArray", () => {
     const configs = [
       {
         method: Conditional.isNonEmptyArray,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -629,11 +629,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isTrue', () => {
+  describe("isTrue", () => {
     const configs = [
       {
         method: Conditional.isTrue,
-        val: '',
+        val: "",
         expected: false,
       },
       {
@@ -681,11 +681,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isPositiveInteger', () => {
+  describe("isPositiveInteger", () => {
     const configs = [
       {
         method: Conditional.isPositiveInteger,
-        val: 'Not a Number',
+        val: "Not a Number",
         expected: false,
       },
       {
@@ -723,11 +723,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isPositiveInteger', () => {
+  describe("isPositiveInteger", () => {
     const configs = [
       {
         method: Conditional.isNonNegativeInteger,
-        val: 'Not a Number',
+        val: "Not a Number",
         expected: false,
       },
       {
@@ -765,11 +765,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('hasOneItem', () => {
+  describe("hasOneItem", () => {
     const configs = [
       {
         method: Conditional.hasOneItem,
-        val: { a: 'b' },
+        val: { a: "b" },
         expected: false,
       },
       {
@@ -789,7 +789,7 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.hasOneItem,
-        val: ['', 1],
+        val: ["", 1],
         expected: false,
       },
       {
@@ -807,11 +807,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('hasMultipleItems', () => {
+  describe("hasMultipleItems", () => {
     const configs = [
       {
         method: Conditional.hasMultipleItems,
-        val: { a: 'b' },
+        val: { a: "b" },
         expected: false,
       },
       {
@@ -831,7 +831,7 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.hasMultipleItems,
-        val: ['', 1],
+        val: ["", 1],
         expected: true,
       },
       {
@@ -841,7 +841,7 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.hasMultipleItems,
-        val: [null, undefined, ''],
+        val: [null, undefined, ""],
         expected: true,
       },
     ]
@@ -849,11 +849,11 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isConstructable', () => {
+  describe("isConstructable", () => {
     const configs = [
       {
         method: Conditional.isConstructable,
-        val: 'Not a Function',
+        val: "Not a Function",
         expected: false,
       },
       {
@@ -886,7 +886,7 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('hasOnlyKeys', () => {
+  describe("hasOnlyKeys", () => {
     const configs = [
       {
         method: Conditional.hasOnlyKeys,
@@ -895,22 +895,22 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.hasOnlyKeys,
-        args: [{ a: 'b' }, ['a']],
+        args: [{ a: "b" }, ["a"]],
         expected: true,
       },
       {
         method: Conditional.hasOnlyKeys,
-        args: [{ a: 'b' }, ['c']],
+        args: [{ a: "b" }, ["c"]],
         expected: false,
       },
       {
         method: Conditional.hasOnlyKeys,
-        args: [{ a: 'b', c: 'd' }, ['a']],
+        args: [{ a: "b", c: "d" }, ["a"]],
         expected: false,
       },
       {
         method: Conditional.hasOnlyKeys,
-        args: [{ a: 'b' }, ['a', 'c']],
+        args: [{ a: "b" }, ["a", "c"]],
         expected: false,
       },
       {
@@ -925,7 +925,7 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.hasOnlyKeys,
-        args: ['', noop],
+        args: ["", noop],
         expected: false,
       },
     ]
@@ -933,7 +933,7 @@ describe('Conditionals', () => {
     runTests(configs)
   })
 
-  describe('isEqual', () => {
+  describe("isEqual", () => {
     const configs = [
       {
         method: Conditional.isEqual,
@@ -942,7 +942,7 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.isEqual,
-        args: [{ a: 'b' }, { a: 'b' }],
+        args: [{ a: "b" }, { a: "b" }],
         expected: false,
       },
       {
@@ -962,12 +962,12 @@ describe('Conditionals', () => {
       },
       {
         method: Conditional.isEqual,
-        args: [Symbol('a'), Symbol('a')],
+        args: [Symbol("a"), Symbol("a")],
         expected: false,
       },
       {
         method: Conditional.isEqual,
-        args: ['b', 'b'],
+        args: ["b", "b"],
         expected: true,
       },
       {

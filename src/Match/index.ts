@@ -6,11 +6,11 @@ import {
   isFunction,
   isObject,
   isEqual,
-} from '../Conditionals'
-import { throwIfMissing, throwIfEmptyArray } from '../ThrowIf'
-import { MatchArm } from '../types'
+} from "../Conditionals"
+import { throwIfMissing, throwIfEmptyArray } from "../ThrowIf"
+import { MatchArm } from "../types"
 
-const _def = Symbol('_def')
+const _def = Symbol("_def")
 
 /**
  * Returns normalised array for `match` to consume
@@ -47,20 +47,20 @@ const match = (val: any) => (...args: any[]) => {
   let evaluation
 
   if (!(isObject(matcher) || isArray(matcher))) {
-    throw new TypeError('`matcher` has to be either an Object or an Array')
+    throw new TypeError("`matcher` has to be either an Object or an Array")
   }
 
   const normalizedArms: Array<MatchArm> = isObject(matcher)
     ? normalizeBasicMatcher(matcher as Object)
     : normalizeAdvancedMatcher([matcher, ...potentialRestOfMatcher])
 
-  throwIfEmptyArray(normalizedArms, '`matcher` has to contain at least one arm')
+  throwIfEmptyArray(normalizedArms, "`matcher` has to contain at least one arm")
 
   const defaultArm = normalizedArms.find(arm => arm.matchExpression === _def)
 
   throwIfMissing(
     defaultArm,
-    '`matcher` needs to contain a default `_def` arm',
+    "`matcher` needs to contain a default `_def` arm",
     ReferenceError,
   )
 
