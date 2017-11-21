@@ -93,6 +93,15 @@ const throwIfNotString = makeThrowable(Conditional.isString, "String")
 const throwIfNotNumber = makeThrowable(Conditional.isNumber, "Number")
 
 /**
+ * Throw if a value is not of type Number and is not an Integer
+ * @param  {any} val – value to pass the assertion
+ * @param  {Error?} error – optional Error instance
+ * @throws {TypeError, Error}
+ * @returns {void}
+ */
+const throwIfNotInteger = makeThrowable(Conditional.isInteger, "Integer")
+
+/**
  * Throw if a value is not of type Function
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
@@ -179,6 +188,7 @@ export {
   throwIfNotObject,
   throwIfNotString,
   throwIfNotNumber,
+  throwIfNotInteger,
   throwIfNotFunction,
   throwIfFalse,
   throwIfEmptyString,

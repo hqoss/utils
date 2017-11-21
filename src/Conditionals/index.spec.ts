@@ -468,6 +468,83 @@ describe("Conditionals", () => {
     runTests(configs)
   })
 
+  describe("isInteger", () => {
+    const configs = [
+      {
+        method: Conditional.isInteger,
+        val: "",
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: -42,
+        expected: true,
+      },
+      {
+        method: Conditional.isInteger,
+        val: 0,
+        expected: true,
+      },
+      {
+        method: Conditional.isInteger,
+        val: 42,
+        expected: true,
+      },
+      {
+        method: Conditional.isInteger,
+        val: 3.14,
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: Infinity,
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: NaN,
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: "42",
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: false,
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Conditional.isInteger,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
   describe("isFunction", () => {
     const configs = [
       {

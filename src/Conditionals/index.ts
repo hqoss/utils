@@ -82,6 +82,15 @@ const isNumber: Conditional = (val: any): val is number => {
 }
 
 /**
+ * Find out whether value is of type Number and is an Integer
+ * @param  {any} val to be validated
+ * @returns {Boolean} true if value is of type Number and is an Integer, else false
+ */
+const isInteger: Conditional = (val: any): val is number => {
+  return isNumber(val) && Number.isInteger(val)
+}
+
+/**
  * Find out whether value is of type Function
  * @param  {any} val to be validated
  * @returns {Boolean} true if value is of type Function, else false
@@ -123,7 +132,7 @@ const isTrue: Conditional = (val: any): val is boolean => {
  * @returns {Boolean} true if value is an Integer and greater than 0, else false
  */
 const isPositiveInteger: Conditional = (val: any): val is number => {
-  return isNumber(val) && Number.isInteger(val) && val > 0
+  return isInteger(val) && val > 0
 }
 
 /**
@@ -132,7 +141,7 @@ const isPositiveInteger: Conditional = (val: any): val is number => {
  * @returns {Boolean} true if value is an Integer and greater or equal to 0, else false
  */
 const isNonNegativeInteger: Conditional = (val: any): val is number => {
-  return isNumber(val) && Number.isInteger(val) && val >= 0
+  return isInteger(val) && val >= 0
 }
 
 /**
@@ -213,6 +222,7 @@ export {
   isObject,
   isString,
   isNumber,
+  isInteger,
   isFunction,
   isNonEmptyString,
   isNonEmptyArray,
