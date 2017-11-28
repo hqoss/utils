@@ -11,7 +11,7 @@ import { Conditional as ConditionalFn, Constructable } from "../types"
 const makeThrowable = (condition: ConditionalFn, expectedType: string = "") => (
   val: any,
   errMessage: string = "",
-  err: Constructable<Error> = Error,
+  err: Constructable<Error> = TypeError,
 ) => {
   if (!Conditional.isNonEmptyString(expectedType)) {
     throw new TypeError('"expectedType" has to be a non-empty string')

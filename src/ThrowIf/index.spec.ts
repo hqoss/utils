@@ -25,11 +25,11 @@ describe("ThrowIf", () => {
       )
     })
 
-    test("when supposed to, throws a generic Error if `errMessage` not non-empty string", () => {
+    test("when supposed to, throws a TypeError if `errMessage` not non-empty string", () => {
       const condition = jest.fn(_ => false)
       const val = "Some Value"
       const subject = ThrowIf.makeThrowable(condition, "Expected Type")
-      expect(() => subject(val)).toThrow(Error)
+      expect(() => subject(val)).toThrow(TypeError)
       expect(() => subject(val)).toThrow(/Error – expected/)
     })
 
