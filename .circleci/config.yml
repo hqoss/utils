@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/src
   docker:
-    - image: node:8.9
+    - image: openmaths/base
 
 whitelist: &whitelist
   paths:
