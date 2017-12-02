@@ -12,15 +12,15 @@
     "test": "make test"
   },
   "dependencies": {
-    "@openmaths/graph-events": "^0.1.3",
-    "@threestup/monads": "^0.2.4"
+    "@openmaths/graph-events": "^1.2.0",
+    "@threestup/monads": "^0.3.1"
   },
   "devDependencies": {
     "@types/jest": "^21.1.0",
     "@types/node": "^8.0.30",
     "jest": "^21.1.0",
-    "prettier": "^1.7.0",
-    "prettier-standard": "^6.0.0",
+    "prettier": "^1.8.2",
+    "prettier-standard": "^7.0.3",
     "ts-jest": "^21.0.1",
     "typescript": "^2.5.2"
   },
