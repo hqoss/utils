@@ -2,7 +2,8 @@
   "collectCoverageFrom": [
     "**/*.{ts,tsx}",
     "!src/main.ts",
-    "!src/types.ts",
+    "!**/**/types.ts",
+    "!**/**/types.d.ts",
     "!**/node_modules/**",
     "!**/dist/**",
     "!**/fixture/**"

@@ -10,8 +10,6 @@ Thumbs.db
 .vscode
 
 .env
-.env.production
-gcloud-service-key.json
 
 coverage/
 dist/
