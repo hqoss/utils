@@ -1,38 +1,40 @@
-import { isPresent, isTrue } from '../Conditionals';
-import { throwIfNotFunction, throwIfNegativeInteger } from '../ThrowIf';
-import { Constructable } from '../types'
+import { isPresent, isTrue } from "../Conditionals"
+import { throwIfNotFunction, throwIfNegativeInteger } from "../ThrowIf"
+import { Constructable } from "../types"
 
 type Source<T> = () => Promise<T>
 
-const makeRecoverable = async <T = any>(source: Source<T>, maxRetries = 3, recoverableError?: Constructable<Error>) => {
-  let retries = 0;
+const makeRecoverable = async <T = any>(
+  source: Source<T>,
+  maxRetries = 3,
+  recoverableError?: Constructable<Error>,
+) => {
+  let retries = 0
 
-  throwIfNotFunction(source, 'source must be a function');
-  throwIfNegativeInteger(maxRetries, 'maxRetries must be a positive integer');
+  throwIfNotFunction(source, "source must be a function")
+  throwIfNegativeInteger(maxRetries, "maxRetries must be a positive integer")
 
   const exec = async (): Promise<T> => {
     try {
-      return await source();
+      return await source()
     } catch (err) {
-      const conditions = [retries < maxRetries];
+      const conditions = [retries < maxRetries]
 
       if (isPresent(recoverableError)) {
-        conditions.push(err instanceof (recoverableError as any));
+        conditions.push(err instanceof (recoverableError as any))
       }
 
-      const canRecover = conditions.every(isTrue);
+      const canRecover = conditions.every(isTrue)
 
       if (canRecover) {
-        ++retries;
-        return exec();
+        ++retries
+        return exec()
       }
-      throw err;
+      throw err
     }
-  };
+  }
 
-  return exec();
-};
+  return exec()
+}
 
-export {
-  makeRecoverable
-};
+export { makeRecoverable }
