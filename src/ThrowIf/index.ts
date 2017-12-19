@@ -126,10 +126,7 @@ const throwIfFalse = makeThrowable(Conditional.isTrue, "True")
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfEmptyString = makeThrowable(
-  Conditional.isNonEmptyString,
-  "Non-empty String",
-)
+const throwIfEmptyString = makeThrowable(Conditional.isNonEmptyString, "Non-empty String")
 
 /**
  * Throw if a value is an empty Array
@@ -138,10 +135,7 @@ const throwIfEmptyString = makeThrowable(
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfEmptyArray = makeThrowable(
-  Conditional.isNonEmptyArray,
-  "Non-empty Array",
-)
+const throwIfEmptyArray = makeThrowable(Conditional.isNonEmptyArray, "Non-empty Array")
 
 /**
  * Throw if a value is not a Positive Integer
@@ -150,10 +144,7 @@ const throwIfEmptyArray = makeThrowable(
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotPositiveInteger = makeThrowable(
-  Conditional.isPositiveInteger,
-  "Positive Integer",
-)
+const throwIfNotPositiveInteger = makeThrowable(Conditional.isPositiveInteger, "Positive Integer")
 
 /**
  * Throw if a value is a Negative Integer
@@ -174,10 +165,7 @@ const throwIfNegativeInteger = makeThrowable(
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotConstructable = makeThrowable(
-  Conditional.isConstructable,
-  "Constructable",
-)
+const throwIfNotConstructable = makeThrowable(Conditional.isConstructable, "Constructable")
 
 export {
   makeThrowable,

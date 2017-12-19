@@ -175,9 +175,7 @@ const isConstructable = (val: any): val is Constructable => {
       new val()
       result = true
     } catch (err) {
-      result = !isNonNegativeInteger(
-        err.message.indexOf("is not a constructor"),
-      )
+      result = !isNonNegativeInteger(err.message.indexOf("is not a constructor"))
     }
   }
 
@@ -194,10 +192,7 @@ const hasOnlyKeys = (val: any, keys: any[]): boolean => {
   if (isObject(val) && isArray(keys)) {
     const objKeys = Object.keys(val)
     const propertiesInKeys = keys.filter(key => key in val)
-    return (
-      isEqual(propertiesInKeys.length, objKeys.length) &&
-      isEqual(objKeys.length, keys.length)
-    )
+    return isEqual(propertiesInKeys.length, objKeys.length) && isEqual(objKeys.length, keys.length)
   }
   return false
 }

@@ -14,9 +14,7 @@ describe("Conditionals", () => {
     configs.forEach(config => {
       if (config.args) {
         test(`correctly evaluates for "${JSON.stringify(config.args)}"`, () => {
-          expect(config.method(...(config.args as any))).toEqual(
-            config.expected,
-          )
+          expect(config.method(...(config.args as any))).toEqual(config.expected)
         })
       } else {
         test(`correctly evaluates for "${JSON.stringify(config.val)}"`, () => {

@@ -48,9 +48,7 @@ describe("Async", () => {
       })
 
       test("does not retry if retry error configuration does not match error type", async () => {
-        const source = jest.fn(() =>
-          Promise.reject(new ReferenceError("RefErr")),
-        )
+        const source = jest.fn(() => Promise.reject(new ReferenceError("RefErr")))
 
         const maxRetries = 3
         const recoverableError = TypeError
@@ -63,9 +61,7 @@ describe("Async", () => {
       })
 
       test("retries if retry policy includes correctly configured error type", async () => {
-        const source = jest.fn(() =>
-          Promise.reject(new SyntaxError("SyntaxErr")),
-        )
+        const source = jest.fn(() => Promise.reject(new SyntaxError("SyntaxErr")))
 
         const maxRetries = 3
         const recoverableError = SyntaxError

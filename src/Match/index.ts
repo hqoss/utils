@@ -58,11 +58,7 @@ const match = (val: any) => (...args: any[]) => {
 
   const defaultArm = normalizedArms.find(arm => arm.matchExpression === _def)
 
-  throwIfMissing(
-    defaultArm,
-    "`matcher` needs to contain a default `_def` arm",
-    ReferenceError,
-  )
+  throwIfMissing(defaultArm, "`matcher` needs to contain a default `_def` arm", ReferenceError)
 
   const explicitMatch = normalizedArms.find(({ matchExpression }) => {
     if (matchExpression === _def) {

@@ -15,6 +15,7 @@ compile:
 format:
 	${prettier_executable} \
 	--no-semi \
+	--print-width "100" \
 	--trailing-comma "all" \
 	--write "${src_folder}/**/*.ts"
 
