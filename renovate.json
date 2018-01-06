@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "schedule": ["after 9pm on sunday"]
+}
