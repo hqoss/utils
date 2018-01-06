@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@openmaths/graph-events": "^1.2.0",
-    "@threestup/monads": "^0.3.1"
+    "@threestup/monads": "^0.4.0"
   },
   "devDependencies": {
     "@types/jest": "22.0.1",
