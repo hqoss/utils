@@ -16,7 +16,7 @@
     "@threestup/monads": "^0.4.0"
   },
   "devDependencies": {
-    "@types/jest": "22.0.1",
+    "@types/jest": "22.1.1",
     "@types/node": "8.5.9",
     "jest": "22.1.4",
     "prettier": "1.10.2",
