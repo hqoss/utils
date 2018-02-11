@@ -50,7 +50,7 @@ const isBoolean = (val: any): val is boolean => {
  * @param  {any} val to be validated
  * @returns {Boolean} true if value is of type Array, else false
  */
-const isArray = (val: any): boolean => {
+const isArray = (val: any): val is any[] => {
   return isPresent(val) && Array.isArray(val)
 }
 
@@ -113,7 +113,7 @@ const isNonEmptyString = (val: any): val is string => {
  * @param  {any} val to be validated
  * @returns {Boolean} true if value is of type Array and has at least one element, else false
  */
-const isNonEmptyArray = (val: any): boolean => {
+const isNonEmptyArray = (val: any): val is any[] => {
   return isArray(val) && val.length > 0
 }
 
@@ -149,7 +149,7 @@ const isNonNegativeInteger = (val: any): val is number => {
  * @param  {any} val to be validated
  * @returns {Boolean} true if value is an Array and its length is 1, else false
  */
-const hasOneItem = (val: any): boolean => {
+const hasOneItem = (val: any): val is [any] => {
   return isArray(val) && val.length === 1
 }
 
@@ -158,7 +158,7 @@ const hasOneItem = (val: any): boolean => {
  * @param  {any} val to be validated
  * @returns {Boolean} true if value is an Array and its length is greater than 1, else false
  */
-const hasMultipleItems = (val: any): boolean => {
+const hasMultipleItems = (val: any): val is any[] => {
   return isArray(val) && val.length > 1
 }
 
