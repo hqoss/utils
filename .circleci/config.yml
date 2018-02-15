@@ -59,10 +59,7 @@ jobs:
           at: ~/src
       - run:
           name: Publish Code coverage
-          command: | 
-            curl -s https://codecov.io/bash > .codecov
-            chmod +x .codecov
-            ./.codecov
+          command: bash <(curl -s https://codecov.io/bash)
 
   deploy:
     <<: *defaults
