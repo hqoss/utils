@@ -756,6 +756,58 @@ describe("Conditionals", () => {
     runTests(configs)
   })
 
+  describe("isFalse", () => {
+    const configs = [
+      {
+        method: Conditional.isFalse,
+        val: "",
+        expected: false,
+      },
+      {
+        method: Conditional.isFalse,
+        val: noop,
+        expected: false,
+      },
+      {
+        method: Conditional.isFalse,
+        val: {},
+        expected: false,
+      },
+      {
+        method: Conditional.isFalse,
+        val: [],
+        expected: false,
+      },
+      {
+        method: Conditional.isFalse,
+        val: 0,
+        expected: false,
+      },
+      {
+        method: Conditional.isFalse,
+        val: false,
+        expected: true,
+      },
+      {
+        method: Conditional.isFalse,
+        val: true,
+        expected: false,
+      },
+      {
+        method: Conditional.isFalse,
+        val: undefined,
+        expected: false,
+      },
+      {
+        method: Conditional.isFalse,
+        val: null,
+        expected: false,
+      },
+    ]
+
+    runTests(configs)
+  })
+
   describe("isPositiveInteger", () => {
     const configs = [
       {

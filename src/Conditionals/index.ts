@@ -127,6 +127,15 @@ const isTrue = (val: any): val is boolean => {
 }
 
 /**
+ * Find out whether value is of type Boolean and is false
+ * @param  {any} val to be validated
+ * @returns {Boolean} true if value is of type Boolean and is false, else false
+ */
+const isFalse = (val: any): val is boolean => {
+  return isBoolean(val) && val === false
+}
+
+/**
  * Find out whether value is an Integer and greater than 0
  * @param  {any} val to be validated
  * @returns {Boolean} true if value is an Integer and greater than 0, else false
@@ -222,6 +231,7 @@ export {
   isNonEmptyString,
   isNonEmptyArray,
   isTrue,
+  isFalse,
   isPositiveInteger,
   isNonNegativeInteger,
   hasOneItem,
