@@ -1,6 +1,6 @@
 {
   "name": "@openmaths/utils",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "The Utils module",
   "main": "./dist/main.js",
   "typings": "./dist/main.d.ts",
