@@ -1,5 +1,6 @@
 export * from "./Async"
 export * from "./Conditionals"
+export * from "./Env"
 export * from "./Helpers"
 export * from "./Match"
 export * from "./ThrowIf"
