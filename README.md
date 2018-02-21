@@ -19,7 +19,7 @@ Available methods:
 
 * `makeRecoverable`
 
-Test Docs [https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts](here).
+Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts).
 
 ### Examples
 
