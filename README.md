@@ -30,6 +30,8 @@ function initService() {
 
 ### Conditionals
 
+Find out whether value is null
+
 ```typescript
 isNull(null) // true
 
@@ -38,12 +40,16 @@ isNull(0) // false
 isNull(NaN) // false
 ```
 
+Find out whether type of value is undefined
+
 ```typescript
 isUndefined(undefined) // true
 
 isUndefined(null) // false
 isUndefined(0) // false
 ```
+
+Find out whether value is null or undefined, therefore "missing"
 
 ```typescript
 isMissing(null) // true
@@ -54,6 +60,8 @@ isMissing(NaN) // false
 isMissing("") // false
 ```
 
+Find out whether value is not null and not undefined, therefore "present"
+
 ```typescript
 isPresent(0) // true
 isPresent(NaN) // true
@@ -63,12 +71,16 @@ isPresent(null) // false
 isPresent(undefined) // false
 ```
 
+Find out whether value is of type Boolean
+
 ```typescript
 isBoolean(true) // true
 isBoolean(false) // true
 
 isBoolean(0) // false
 ```
+
+Find out whether value is of type Array
 
 ```typescript
 isArray([]) // true
@@ -77,6 +89,8 @@ isArray([null, undefined]) // true
 isArray({}) // false
 ```
 
+Find out whether value is of type Object
+
 ```typescript
 isObject({}) // true
 
@@ -84,11 +98,15 @@ isObject(new Function()) // false
 isObject([]) // false
 ```
 
+Find out whether value is of type String
+
 ```typescript
 isString("") // true
 
 isString(new String()) // false
 ```
+
+Find out whether value is of type Number
 
 ```typescript
 isNumber(42) // true
@@ -98,6 +116,8 @@ isNumber(Infinity) // true
 isNumber(NaN) // false
 ```
 
+Find out whether value is of type Number and is an Integer
+
 ```typescript
 isInteger(42) // true
 
@@ -106,6 +126,8 @@ isInteger(Infinity) // false
 isInteger(NaN) // false
 ```
 
+Find out whether value is of type Function
+
 ```typescript
 isFunction(() => {}) // true
 isFunction(ReferenceError) // true
@@ -113,17 +135,23 @@ isFunction(ReferenceError) // true
 isFunction(new ReferenceError()) // false
 ```
 
+Find out whether value is of type String, and has at least 1 character
+
 ```typescript
 isNonEmptyString("Hello, World!") // true
 
 isNonEmptyString("") // false
 ```
 
+Find out whether value is of type Array and has at least one element
+
 ```typescript
 isNonEmptyArray([null]) // true
 
 isNonEmptyArray([]) // false
 ```
+
+Find out whether value is of type Boolean and is true
 
 ```typescript
 isTrue(true) // true
@@ -132,12 +160,16 @@ isTrue(1) // false
 isTrue(false) // false
 ```
 
+Find out whether value is of type Boolean and is false
+
 ```typescript
 isFalse(false) // true
 
 isFalse(0) // false
 isFalse(true) // false
 ```
+
+Find out whether value is an Integer and greater than 0
 
 ```typescript
 isPositiveInteger(42) // true
@@ -146,12 +178,16 @@ isPositiveInteger(0) // false
 isPositiveInteger(-42) // false
 ```
 
+Find out whether value is an Integer and greater or equal to 0
+
 ```typescript
 isNonNegativeInteger(42) // true
 isNonNegativeInteger(0) // true
 
 isNonNegativeInteger(-42) // false
 ```
+
+Find out whether value is an Array and its length is 1
 
 ```typescript
 hasOneItem([null]) // true
@@ -160,12 +196,16 @@ hasOneItem([]) // false
 hasOneItem([42, Math.PI]) // false
 ```
 
+Find out whether value is an Array and its length is more than 1
+
 ```typescript
 hasMultipleItems([42, Infinity]) // true
 
 hasMultipleItems([]) // false
 hasMultipleItems(["Hello, World"]) // false
 ```
+
+Find out whether value is Constructable
 
 ```typescript
 isConstructable(new Function()) // true
@@ -176,6 +216,8 @@ isConstructable(class ClassName {}) // true
 isConstructable(() => {}) // false
 ```
 
+Find out whether value has only the keys provided
+
 ```typescript
 hasOnlyKeys({ a: "b", c: "d" }, ["a", "c"]) // true
 hasOnlyKeys({ a: "b" }, ["a"]) // true
@@ -184,6 +226,8 @@ hasOnlyKeys({}, []) // true
 hasOnlyKeys({ a: "b" }, ["c"]) // false
 hasOnlyKeys({ a: "b", c: "d" }, ["a"]) // false
 ```
+
+Find out whether value 1 and value 2 are equal (shallow)
 
 ```typescript
 isEqual("Hello, World!", "Hello, World!") // true
