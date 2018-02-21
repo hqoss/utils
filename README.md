@@ -250,7 +250,7 @@ isEqual(false, true) // false
 
 ### Env
 
-Assuming your process.env has the following:
+Assuming your `process.env` has loaded the following `.env`.
 
 ```
 IS_PROD=true
