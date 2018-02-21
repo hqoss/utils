@@ -43,7 +43,7 @@ function initService() {
 
 ```
 
-**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts).**
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts).**
 
 ---
 
@@ -73,10 +73,6 @@ Available methods:
 * `isConstructable`
 * `hasOnlyKeys`
 * `isEqual`
-
-**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Conditionals/index.spec.ts).**
-
----
 
 ### Examples
 
@@ -357,6 +353,10 @@ isEqual(false, true) // false
 
 ```
 
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Conditionals/index.spec.ts).**
+
+---
+
 ## Env
 
 Available methods:
@@ -364,10 +364,6 @@ Available methods:
 * `getAsBool`
 * `getAsInt`
 * `getAsStr`
-
-**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Env/index.spec.ts).**
-
----
 
 ### Examples
 
@@ -422,6 +418,10 @@ getAsBool("IS_DEV", env) // false
 
 ```
 
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Env/index.spec.ts).**
+
+---
+
 ## Helpers
 
 Available methods:
@@ -429,10 +429,6 @@ Available methods:
 * `noop`
 * `identity`
 * `getRandomIntInclusive`
-
-**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Helpers/index.spec.ts).**
-
----
 
 ### Examples
 
@@ -478,6 +474,10 @@ getRandomIntInclusive(10, 99) // Yields integers between 10 and 99
 
 ```
 
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Helpers/index.spec.ts).**
+
+---
+
 ## Match
 
 Available methods:
@@ -487,10 +487,6 @@ Available methods:
 Other exports:
 
 * `_def`
-
-**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Match/index.spec.ts).**
-
----
 
 ### Examples
 
@@ -537,6 +533,10 @@ getMessage(1333) // "Unfortunately, we cannot tell what year it is."
 
 ```
 
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Match/index.spec.ts).**
+
+---
+
 ## ThrowIf
 
 A collection of simple throwable assertions, all of which throw if the assertion fails.
@@ -559,10 +559,6 @@ Available methods:
 * `throwIfNegativeInteger`
 * `throwIfNotConstructable`
 
-**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/ThrowIf/index.spec.ts).**
-
----
-
 ### Examples
 
 ```typescript
@@ -580,6 +576,10 @@ throwIfMissing(someValue, '`someValue` missing!'); // throws Error('`someValue` 
 throwIfMissing(someValue, '`someValue` missing!', ReferenceError); // throws ReferenceError('`someValue` missing!')
 
 ```
+
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/ThrowIf/index.spec.ts).**
+
+---
 
 ## Development
 
