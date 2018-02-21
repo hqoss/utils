@@ -21,6 +21,8 @@ Available methods:
 
 **Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts).**
 
+---
+
 ### Examples
 
 #### `makeRecoverable`
@@ -72,7 +74,9 @@ Available methods:
 * `hasOnlyKeys`
 * `isEqual`
 
-Test Docs at []().
+**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Conditionals/index.spec.ts).**
+
+---
 
 ### Examples
 
@@ -361,7 +365,9 @@ Available methods:
 * `getAsInt`
 * `getAsStr`
 
-Test Docs at []().
+**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Env/index.spec.ts).**
+
+---
 
 ### Examples
 
@@ -424,7 +430,9 @@ Available methods:
 * `identity`
 * `getRandomIntInclusive`
 
-Test Docs at []().
+**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Helpers/index.spec.ts).**
+
+---
 
 ### Examples
 
@@ -480,7 +488,9 @@ Other exports:
 
 * `_def`
 
-Test Docs at []().
+**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Match/index.spec.ts).**
+
+---
 
 ### Examples
 
@@ -549,7 +559,9 @@ Available methods:
 * `throwIfNegativeInteger`
 * `throwIfNotConstructable`
 
-Test Docs at []().
+**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/ThrowIf/index.spec.ts).**
+
+---
 
 ### Examples
 
