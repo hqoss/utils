@@ -199,11 +199,19 @@ isEqual(false, true) // false
 
 ### Env
 
+ TBC
+
 ### Helpers
+
+TBC
 
 ### Match
 
+TBC
+
 ### ThrowIf
+
+TBC
 
 ## Development
 
