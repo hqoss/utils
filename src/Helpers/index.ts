@@ -6,7 +6,7 @@ import { throwIfNotNumber } from "../ThrowIf"
  *
  * @returns {void}
  */
-const noop = (): void => {}
+const noop = (..._args: any[]): void => {}
 
 /**
  * Returns itself
@@ -24,6 +24,7 @@ const identity = <T>(val: T): T => val
  * @returns {Number} random integer within the range
  */
 const getRandomIntInclusive = (min: number, max: number): number => {
+  // @TODO investigate the use of generators
   throwIfNotNumber(min, `min "${min}" must be a number`, TypeError)
   throwIfNotNumber(max, `max "${max}" must be a number`, TypeError)
 

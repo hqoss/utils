@@ -24,6 +24,7 @@ function getUsers() {
   const source = () => http.get("/api/users")
   return makeRecoverable(source, 5)
 }
+
 ```
 
 The below will retry thrice if the error caught is a `TimeoutError`.
@@ -33,9 +34,12 @@ function initService() {
   const source = () => service.init()
   return makeRecoverable(source, 3, TimeoutError)
 }
+
 ```
 
 ### Conditionals
+
+#### `isNull`
 
 Find out whether value is null
 
@@ -45,7 +49,10 @@ isNull(null) // true
 isNull(undefined) // false
 isNull(0) // false
 isNull(NaN) // false
+
 ```
+
+#### `isUndefined`
 
 Find out whether type of value is undefined
 
@@ -54,7 +61,10 @@ isUndefined(undefined) // true
 
 isUndefined(null) // false
 isUndefined(0) // false
+
 ```
+
+#### `isMissing`
 
 Find out whether value is null or undefined, therefore "missing"
 
@@ -65,7 +75,10 @@ isMissing(undefined) // true
 isMissing(0) // false
 isMissing(NaN) // false
 isMissing("") // false
+
 ```
+
+#### `isPresent`
 
 Find out whether value is not null and not undefined, therefore "present"
 
@@ -76,7 +89,10 @@ isPresent("") // true
 
 isPresent(null) // false
 isPresent(undefined) // false
+
 ```
+
+#### `isBoolean`
 
 Find out whether value is of type Boolean
 
@@ -85,7 +101,10 @@ isBoolean(true) // true
 isBoolean(false) // true
 
 isBoolean(0) // false
+
 ```
+
+#### `isArray`
 
 Find out whether value is of type Array
 
@@ -94,7 +113,10 @@ isArray([]) // true
 isArray([null, undefined]) // true
 
 isArray({}) // false
+
 ```
+
+#### `isObject`
 
 Find out whether value is of type Object
 
@@ -103,7 +125,10 @@ isObject({}) // true
 
 isObject(new Function()) // false
 isObject([]) // false
+
 ```
+
+#### `isString`
 
 Find out whether value is of type String
 
@@ -111,7 +136,10 @@ Find out whether value is of type String
 isString("") // true
 
 isString(new String()) // false
+
 ```
+
+#### `isNumber`
 
 Find out whether value is of type Number
 
@@ -121,7 +149,10 @@ isNumber(Math.PI) // true
 isNumber(Infinity) // true
 
 isNumber(NaN) // false
+
 ```
+
+#### `isInteger`
 
 Find out whether value is of type Number and is an Integer
 
@@ -131,7 +162,10 @@ isInteger(42) // true
 isInteger(Math.PI) // false
 isInteger(Infinity) // false
 isInteger(NaN) // false
+
 ```
+
+#### `isFunction`
 
 Find out whether value is of type Function
 
@@ -140,7 +174,10 @@ isFunction(() => {}) // true
 isFunction(ReferenceError) // true
 
 isFunction(new ReferenceError()) // false
+
 ```
+
+#### `isNonEmptyString`
 
 Find out whether value is of type String, and has at least 1 character
 
@@ -148,7 +185,10 @@ Find out whether value is of type String, and has at least 1 character
 isNonEmptyString("Hello, World!") // true
 
 isNonEmptyString("") // false
+
 ```
+
+#### `isNonEmptyArray`
 
 Find out whether value is of type Array and has at least one element
 
@@ -156,7 +196,10 @@ Find out whether value is of type Array and has at least one element
 isNonEmptyArray([null]) // true
 
 isNonEmptyArray([]) // false
+
 ```
+
+#### `isTrue`
 
 Find out whether value is of type Boolean and is true
 
@@ -165,7 +208,10 @@ isTrue(true) // true
 
 isTrue(1) // false
 isTrue(false) // false
+
 ```
+
+#### `isFalse`
 
 Find out whether value is of type Boolean and is false
 
@@ -174,7 +220,10 @@ isFalse(false) // true
 
 isFalse(0) // false
 isFalse(true) // false
+
 ```
+
+#### `isPositiveInteger`
 
 Find out whether value is an Integer and greater than 0
 
@@ -183,7 +232,10 @@ isPositiveInteger(42) // true
 
 isPositiveInteger(0) // false
 isPositiveInteger(-42) // false
+
 ```
+
+#### `isNonNegativeInteger`
 
 Find out whether value is an Integer and greater or equal to 0
 
@@ -192,7 +244,10 @@ isNonNegativeInteger(42) // true
 isNonNegativeInteger(0) // true
 
 isNonNegativeInteger(-42) // false
+
 ```
+
+#### `hasOneItem`
 
 Find out whether value is an Array and its length is 1
 
@@ -201,7 +256,10 @@ hasOneItem([null]) // true
 
 hasOneItem([]) // false
 hasOneItem([42, Math.PI]) // false
+
 ```
+
+#### `hasMultipleItems`
 
 Find out whether value is an Array and its length is more than 1
 
@@ -210,7 +268,10 @@ hasMultipleItems([42, Infinity]) // true
 
 hasMultipleItems([]) // false
 hasMultipleItems(["Hello, World"]) // false
+
 ```
+
+#### `isConstructable`
 
 Find out whether value is Constructable
 
@@ -221,7 +282,10 @@ isConstructable(class {}) // true
 isConstructable(class ClassName {}) // true
 
 isConstructable(() => {}) // false
+
 ```
+
+#### `hasOnlyKeys`
 
 Find out whether value has only the keys provided
 
@@ -232,7 +296,10 @@ hasOnlyKeys({}, []) // true
 
 hasOnlyKeys({ a: "b" }, ["c"]) // false
 hasOnlyKeys({ a: "b", c: "d" }, ["a"]) // false
+
 ```
+
+#### `isEqual`
 
 Find out whether value 1 and value 2 are equal (shallow)
 
@@ -246,6 +313,7 @@ isEqual(Infinity, Infinity) // true
 isEqual([], []) // false
 isEqual({}, {}) // false
 isEqual(false, true) // false
+
 ```
 
 ### Env
@@ -256,6 +324,7 @@ Assuming your `process.env` has loaded the following `.env`.
 IS_PROD=true
 ASYNC_MAX_TIMEOUT=2500
 API_KEY=0351f02f-0be2-49d1-bfed-5c45275d4fd2
+
 ```
 
 #### Booleans
@@ -264,6 +333,7 @@ To retrieve the Boolean value of `"IS_PROD"` from `process.env`, you can use the
 
 ```typescript
 getAsBool("IS_PROD") // true
+
 ```
 
 If the raw value cannot be found, or the parsed value is not a Boolean, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
@@ -274,6 +344,7 @@ To retrieve the Integer value of `"ASYNC_MAX_TIMEOUT"` from `process.env`, you c
 
 ```typescript
 getAsInt("ASYNC_MAX_TIMEOUT") // 2500
+
 ```
 
 If the raw value cannot be found, or the parsed value is not an Integer, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
@@ -284,6 +355,7 @@ To retrieve the String value of `"API_KEY"` from `process.env`, you can use the 
 
 ```typescript
 getAsStr("API_KEY") // "0351f02f-0be2-49d1-bfed-5c45275d4fd2"
+
 ```
 
 If the raw value cannot be found, **this function will throw** a `ReferenceError`.
@@ -291,21 +363,136 @@ If the raw value cannot be found, **this function will throw** a `ReferenceError
 In all of the above, you can also use your own env object like so:
 
 ```typescript
-// env = { "API_KEY": "true" }
-getAsBool("API_KEY", env)
+// const env = { "IS_DEV": "false" }
+
+getAsBool("IS_DEV", env) // false
+
 ```
 
 ### Helpers
 
-TBC
+#### `noop`
+
+Sometimes you might want to provide a default callback parameter to some of your functions to prevent the application from crashing (on the off-chance someone or something accidentally calls them without any parameters). You can use the `noop` helper as shown below.
+
+```typescript
+function doSomething(cb = noop) {
+  let res: string
+
+  try {
+    await http.get("/api/healthcheck")
+    res = "All works!"
+  } catch (_err) {
+    res = "There was an error!"
+  }
+
+  cb(res)
+}
+
+```
+
+#### `identity`
+
+Let's assume that `doSomething` prints its result (`String`) into the console, but applies `onSuccess` for a Ok result, and `onError` for a Err result. You might want to uppercase the success result, but leave the error message in its original form. You can use the identity helper as shown below.
+
+```typescript
+function onSuccess(res: string) {
+   return res.toUpperCase()
+}
+
+doSomething(onSuccess, identity)
+
+```
+
+#### `getRandomIntInclusive`
+
+To get a random integer within a specified range, you can use the following:
+
+```typescript
+getRandomIntInclusive(10, 99) // Yields integers between 10 and 99
+
+```
 
 ### Match
 
-TBC
+A basic pattern match:
+
+```typescript
+const getMessage = (year: number): string => match(year)({
+  [1984]: "The year is 1984.",
+  [_def]: "Unfortunately, we cannot tell what year it is."
+})
+
+getMessage(1984) // "The year is 1984."
+getMessage(1994) // "Unfortunately, we cannot tell what year it is."
+getMessage(2024) // "Unfortunately, we cannot tell what year it is."
+
+```
+
+Advanced pattern matching, including assertions:
+
+```typescript
+function isFutureYear(year) {
+  return isPositiveInteger(year)
+  && year > new Date().getFullYear()
+}
+
+function isCurrentYear(year) {
+  return isPositiveInteger(year)
+  && year === new Date().getFullYear()
+}
+
+const getMessage = (year: number): string => match(year)(
+  [1984, "The year is 1984."],
+  [isCurrentYear, x => `The year ${x} is up-to-date.`],
+  [isFutureYear, x => `The year ${x} is in the future...`],
+  [_def, "Unfortunately, we cannot tell what year it is."],
+)
+
+getMessage(1984) // "The year is 1984."
+getMessage(2018) // "The year 2018 is up-to-date."
+getMessage(2024) // "The year 2024 is in the future..."
+getMessage(1333) // "Unfortunately, we cannot tell what year it is."
+
+```
 
 ### ThrowIf
 
-TBC
+A collection of simple throwable assertions, all of which throw if the assertion fails.
+
+```typescript
+throwIfNotObject({}); // void
+throwIfNotObject([]); // throws Error
+throwIfNotObject(null); // throws Error
+throwIfNotObject(undefined); // throws Error
+
+```
+
+You can also provide your own error messages, and errors.
+
+```typescript
+throwIfMissing(someValue, '`someValue` missing!'); // throws Error('`someValue` missing!')
+throwIfMissing(someValue, '`someValue` missing!', ReferenceError); // throws ReferenceError('`someValue` missing!')
+
+```
+
+Available methods:
+
+* throwIfMissing,
+* throwIfPresent,
+* throwIfNotBoolean,
+* throwIfNotArray,
+* throwIfNotObject,
+* throwIfNotString,
+* throwIfNotNumber,
+* throwIfNotInteger,
+* throwIfNotFunction,
+* throwIfFalse,
+* throwIfEmptyString,
+* throwIfEmptyArray,
+* throwIfNotPositiveInteger,
+* throwIfNegativeInteger,
+* throwIfNotConstructable,
 
 ## Development
 

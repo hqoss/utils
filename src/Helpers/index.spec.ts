@@ -5,6 +5,8 @@ describe("Helpers", () => {
     test("is a function that does not return", () => {
       expect(typeof noop).toEqual("function")
       expect(noop()).toBeUndefined()
+      expect(noop("Hello, World!")).toBeUndefined()
+      expect(noop(42, Math.PI, Infinity)).toBeUndefined()
     })
   })
 
