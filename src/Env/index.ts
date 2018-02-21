@@ -1,6 +1,14 @@
 import { isBoolean, isInteger, isPresent } from "../Conditionals"
 import { throwIfMissing } from "../ThrowIf"
 
+/**
+ * Attempts to retrieve and parse a value from process.env,
+ * returns it as Boolean
+ *
+ * @param  {String} key
+ * @param  {Object} env
+ * @returns {Boolean}
+ */
 function getAsBool(key: string, env = process.env): boolean {
   const value = env[key]
 
@@ -27,6 +35,14 @@ function getAsBool(key: string, env = process.env): boolean {
   }
 }
 
+/**
+ * Attempts to retrieve and parse a value from process.env,
+ * returns it as Integer
+ *
+ * @param  {String} key
+ * @param  {Object} env
+ * @returns {Integer}
+ */
 function getAsInt(key: string, env = process.env): number {
   const value = env[key]
 
@@ -53,6 +69,14 @@ function getAsInt(key: string, env = process.env): number {
   }
 }
 
+/**
+ * Attempts to retrieve a value from process.env,
+ * returns it as String
+ *
+ * @param  {String} key
+ * @param  {Object} env
+ * @returns {String}
+ */
 function getAsStr(key: string, env = process.env): string {
   const value = env[key]
   throwIfMissing(value, `env.${key} cannot be missing`, ReferenceError)

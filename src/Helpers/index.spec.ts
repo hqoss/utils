@@ -26,7 +26,7 @@ describe("Helpers", () => {
       ]
 
       subjects.forEach(subject => {
-        expect(subject).toThrow("`min` has to be a number")
+        expect(subject).toThrow("must be a number")
         expect(subject).toThrow(TypeError)
       })
     })
@@ -41,7 +41,7 @@ describe("Helpers", () => {
       ]
 
       subjects.forEach(subject => {
-        expect(subject).toThrow("`max` has to be a number")
+        expect(subject).toThrow("must be a number")
         expect(subject).toThrow(TypeError)
       })
     })

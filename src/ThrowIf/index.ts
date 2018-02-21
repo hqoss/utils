@@ -3,6 +3,7 @@ import { Conditional as ConditionalFn, Constructable } from "../types"
 
 /**
  * Throw if a value is not of type Boolean
+ *
  * @param  {Function} condition – Condition with `(val: any) => Boolean` signature
  * @param  {String} expectedType – expected type, in case of Error
  * @throws {TypeError, Error}
@@ -31,6 +32,7 @@ const makeThrowable = (condition: ConditionalFn, expectedType: string = "") => (
 
 /**
  * Throw if a value is missing (it's null or undefined)
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -40,6 +42,7 @@ const throwIfMissing = makeThrowable(Conditional.isPresent, "Something")
 
 /**
  * Throw if a value is present (it's not null or undefined)
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -49,6 +52,7 @@ const throwIfPresent = makeThrowable(Conditional.isMissing, "Nothing")
 
 /**
  * Throw if a value is not of type Boolean
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -58,6 +62,7 @@ const throwIfNotBoolean = makeThrowable(Conditional.isBoolean, "Boolean")
 
 /**
  * Throw if a value is not of type Array
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -67,6 +72,7 @@ const throwIfNotArray = makeThrowable(Conditional.isArray, "Array")
 
 /**
  * Throw if a value is not of type Object
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -76,6 +82,7 @@ const throwIfNotObject = makeThrowable(Conditional.isObject, "Object")
 
 /**
  * Throw if a value is not of type String
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -85,6 +92,7 @@ const throwIfNotString = makeThrowable(Conditional.isString, "String")
 
 /**
  * Throw if a value is not of type Number
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -94,6 +102,7 @@ const throwIfNotNumber = makeThrowable(Conditional.isNumber, "Number")
 
 /**
  * Throw if a value is not of type Number and is not an Integer
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -103,6 +112,7 @@ const throwIfNotInteger = makeThrowable(Conditional.isInteger, "Integer")
 
 /**
  * Throw if a value is not of type Function
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -112,6 +122,7 @@ const throwIfNotFunction = makeThrowable(Conditional.isFunction, "Function")
 
 /**
  * Throw if a value is `false`
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -121,6 +132,7 @@ const throwIfFalse = makeThrowable(Conditional.isTrue, "True")
 
 /**
  * Throw if a value is an empty String
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -130,6 +142,7 @@ const throwIfEmptyString = makeThrowable(Conditional.isNonEmptyString, "Non-empt
 
 /**
  * Throw if a value is an empty Array
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -139,6 +152,7 @@ const throwIfEmptyArray = makeThrowable(Conditional.isNonEmptyArray, "Non-empty 
 
 /**
  * Throw if a value is not a Positive Integer
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -148,6 +162,7 @@ const throwIfNotPositiveInteger = makeThrowable(Conditional.isPositiveInteger, "
 
 /**
  * Throw if a value is a Negative Integer
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}
@@ -160,6 +175,7 @@ const throwIfNegativeInteger = makeThrowable(
 
 /**
  * Throw if a value is not Constructable
+ *
  * @param  {any} val – value to pass the assertion
  * @param  {Error?} error – optional Error instance
  * @throws {TypeError, Error}

@@ -14,6 +14,7 @@ const _def = Symbol("_def")
 
 /**
  * Returns normalised array for `match` to consume
+ *
  * @returns {Array}
  */
 const normalizeBasicMatcher = (arms: Object = {}): MatchArm[] => {
@@ -27,6 +28,7 @@ const normalizeBasicMatcher = (arms: Object = {}): MatchArm[] => {
 
 /**
  * Returns normalised array for `match` to consume
+ *
  * @returns {Array}
  */
 const normalizeAdvancedMatcher = (arms: Array<any> = []): MatchArm[] => {
@@ -39,6 +41,8 @@ const normalizeAdvancedMatcher = (arms: Array<any> = []): MatchArm[] => {
  * Matches against either a basic, or an advanced matcher.
  * Basic has the following signature: { [MatchExpression]: evaluation }
  * Advanced has the following signature: ...[ MatchExpression, evaluation ]
+ *
+ * @param {any} val
  * @returns {any}
  */
 const match = (val: any) => (...args: any[]) => {

@@ -4,6 +4,14 @@ import { Constructable } from "../types"
 
 type Source<T> = () => Promise<T>
 
+/**
+ * Makes a Promise-returning function recoverable (attempts retries)
+ *
+ * @param  {<T>() => Promise<T>} source
+ * @param  {Integer} maxRetries
+ * @param  {Error} recoverableError
+ * @returns {<T>() => Promise<T>}
+ */
 const makeRecoverable = async <T = any>(
   source: Source<T>,
   maxRetries = 3,
