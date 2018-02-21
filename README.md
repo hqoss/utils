@@ -1,4 +1,4 @@
-## Utils
+# JavaScript / TypeScript Utilities
 
 A collection of light-weight methods and helpers for defensive programming
 
