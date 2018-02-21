@@ -19,7 +19,7 @@ Available methods:
 
 * `makeRecoverable`
 
-Test Docs at []().
+Test Docs [https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts](here).
 
 ### Examples
 
@@ -568,8 +568,6 @@ throwIfMissing(someValue, '`someValue` missing!'); // throws Error('`someValue` 
 throwIfMissing(someValue, '`someValue` missing!', ReferenceError); // throws ReferenceError('`someValue` missing!')
 
 ```
-
-===
 
 ## Development
 
