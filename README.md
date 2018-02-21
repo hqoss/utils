@@ -13,9 +13,17 @@ There are 6 main modules available:
 * Match
 * ThrowIf
 
-### Async
+## Async
 
-#### Retrying Promises
+Available methods:
+
+* `makeRecoverable`
+
+Test Docs at []().
+
+### Examples
+
+#### `makeRecoverable`
 
 The below will retry 5 times.
 
@@ -37,7 +45,36 @@ function initService() {
 
 ```
 
-### Conditionals
+## Conditionals
+
+Available methods:
+
+* `isNull`
+* `isUndefined`
+* `isMissing`
+* `isPresent`
+* `isBoolean`
+* `isArray`
+* `isObject`
+* `isString`
+* `isNumber`
+* `isInteger`
+* `isFunction`
+* `isNonEmptyString`
+* `isNonEmptyArray`
+* `isTrue`
+* `isFalse`
+* `isPositiveInteger`
+* `isNonNegativeInteger`
+* `hasOneItem`
+* `hasMultipleItems`
+* `isConstructable`
+* `hasOnlyKeys`
+* `isEqual`
+
+Test Docs at []().
+
+### Examples
 
 #### `isNull`
 
@@ -316,7 +353,17 @@ isEqual(false, true) // false
 
 ```
 
-### Env
+## Env
+
+Available methods:
+
+* `getAsBool`
+* `getAsInt`
+* `getAsStr`
+
+Test Docs at []().
+
+### Examples
 
 Assuming your `process.env` has loaded the following `.env`.
 
@@ -327,7 +374,7 @@ API_KEY=0351f02f-0be2-49d1-bfed-5c45275d4fd2
 
 ```
 
-#### Booleans
+#### `getAsBool`
 
 To retrieve the Boolean value of `"IS_PROD"` from `process.env`, you can use the following method.
 
@@ -338,7 +385,7 @@ getAsBool("IS_PROD") // true
 
 If the raw value cannot be found, or the parsed value is not a Boolean, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
 
-#### Integers
+#### `getAsInt`
 
 To retrieve the Integer value of `"ASYNC_MAX_TIMEOUT"` from `process.env`, you can use the following method.
 
@@ -349,7 +396,7 @@ getAsInt("ASYNC_MAX_TIMEOUT") // 2500
 
 If the raw value cannot be found, or the parsed value is not an Integer, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
 
-#### Strings
+#### `getAsStr`
 
 To retrieve the String value of `"API_KEY"` from `process.env`, you can use the following method.
 
@@ -369,7 +416,17 @@ getAsBool("IS_DEV", env) // false
 
 ```
 
-### Helpers
+## Helpers
+
+Available methods:
+
+* `noop`
+* `identity`
+* `getRandomIntInclusive`
+
+Test Docs at []().
+
+### Examples
 
 #### `noop`
 
@@ -413,7 +470,21 @@ getRandomIntInclusive(10, 99) // Yields integers between 10 and 99
 
 ```
 
-### Match
+## Match
+
+Available methods:
+
+* `match`
+
+Other exports:
+
+* `_def`
+
+Test Docs at []().
+
+### Examples
+
+#### `match`
 
 A basic pattern match:
 
@@ -456,9 +527,31 @@ getMessage(1333) // "Unfortunately, we cannot tell what year it is."
 
 ```
 
-### ThrowIf
+## ThrowIf
 
 A collection of simple throwable assertions, all of which throw if the assertion fails.
+
+Available methods:
+
+* `throwIfMissing`
+* `throwIfPresent`
+* `throwIfNotBoolean`
+* `throwIfNotArray`
+* `throwIfNotObject`
+* `throwIfNotString`
+* `throwIfNotNumber`
+* `throwIfNotInteger`
+* `throwIfNotFunction`
+* `throwIfFalse`
+* `throwIfEmptyString`
+* `throwIfEmptyArray`
+* `throwIfNotPositiveInteger`
+* `throwIfNegativeInteger`
+* `throwIfNotConstructable`
+
+Test Docs at []().
+
+### Examples
 
 ```typescript
 throwIfNotObject({}); // void
@@ -476,23 +569,7 @@ throwIfMissing(someValue, '`someValue` missing!', ReferenceError); // throws Ref
 
 ```
 
-Available methods:
-
-* throwIfMissing,
-* throwIfPresent,
-* throwIfNotBoolean,
-* throwIfNotArray,
-* throwIfNotObject,
-* throwIfNotString,
-* throwIfNotNumber,
-* throwIfNotInteger,
-* throwIfNotFunction,
-* throwIfFalse,
-* throwIfEmptyString,
-* throwIfEmptyArray,
-* throwIfNotPositiveInteger,
-* throwIfNegativeInteger,
-* throwIfNotConstructable,
+===
 
 ## Development
 
