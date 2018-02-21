@@ -6,12 +6,12 @@ A collection of light-weight methods and helpers for defensive programming
 
 There are 6 main modules available:
 
-* Async
-* Conditionals
-* Env
-* Helpers
-* Match
-* ThrowIf
+* [Async](https://github.com/OpenMaths/mod-utils#async)
+* [Conditionals](https://github.com/OpenMaths/mod-utils#conditionals)
+* [Env](https://github.com/OpenMaths/mod-utils#env)
+* [Helpers](https://github.com/OpenMaths/mod-utils#helpers)
+* [Match](https://github.com/OpenMaths/mod-utils#match)
+* [ThrowIf](https://github.com/OpenMaths/mod-utils#throwif)
 
 ## Async
 
