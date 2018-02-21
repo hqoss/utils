@@ -1,5 +1,5 @@
 import { isPresent, isTrue } from "../Conditionals"
-import { throwIfNotFunction, throwIfNegativeInteger } from "../ThrowIf"
+import { throwIfNotFunction, throwIfNegativeInteger, throwIfNotConstructable } from "../ThrowIf"
 import { Constructable } from "../types"
 
 type Source<T> = () => Promise<T>
@@ -21,6 +21,10 @@ const makeRecoverable = async <T = any>(
 
   throwIfNotFunction(source, "source must be a function")
   throwIfNegativeInteger(maxRetries, "maxRetries must be a positive integer")
+
+  if (isPresent(recoverableError)) {
+    throwIfNotConstructable(recoverableError, "recoverableError must be constructable")
+  }
 
   const exec = async (): Promise<T> => {
     try {
