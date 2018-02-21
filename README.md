@@ -250,7 +250,50 @@ isEqual(false, true) // false
 
 ### Env
 
- TBC
+Assuming your process.env has the following:
+
+```
+IS_PROD=true
+ASYNC_MAX_TIMEOUT=2500
+API_KEY=0351f02f-0be2-49d1-bfed-5c45275d4fd2
+```
+
+#### Booleans
+
+To retrieve the Boolean value of `"IS_PROD"` from `process.env`, you can use the following method.
+
+```typescript
+getAsBool("IS_PROD") // true
+```
+
+If the raw value cannot be found, or the parsed value is not a Boolean, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
+
+#### Integers
+
+To retrieve the Integer value of `"ASYNC_MAX_TIMEOUT"` from `process.env`, you can use the following method.
+
+```typescript
+getAsInt("ASYNC_MAX_TIMEOUT") // 2500
+```
+
+If the raw value cannot be found, or the parsed value is not an Integer, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
+
+#### Strings
+
+To retrieve the String value of `"API_KEY"` from `process.env`, you can use the following method.
+
+```typescript
+getAsStr("API_KEY") // "0351f02f-0be2-49d1-bfed-5c45275d4fd2"
+```
+
+If the raw value cannot be found, **this function will throw** a `ReferenceError`.
+
+In all of the above, you can also use your own env object like so:
+
+```typescript
+// env = { "API_KEY": "true" }
+getAsBool("API_KEY", env)
+```
 
 ### Helpers
 
