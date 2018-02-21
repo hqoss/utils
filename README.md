@@ -19,10 +19,6 @@ Available methods:
 
 * `makeRecoverable`
 
-**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts).**
-
----
-
 ### Examples
 
 #### `makeRecoverable`
@@ -46,6 +42,10 @@ function initService() {
 }
 
 ```
+
+**Test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts).**
+
+---
 
 ## Conditionals
 
