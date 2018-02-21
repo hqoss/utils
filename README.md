@@ -207,14 +207,27 @@ isEqual(false, true) // false
 
 ## Development
 
-To Install:
-`npm install`
+1) Install dependencies:
 
-To Compile:
-`make compile`
+```sh
+npm install
+```
 
-To Test:
-`make test`
+2) Compile:
 
-To Prettify:
-`make prettify`
+```sh
+make compile
+```
+
+3) Test:
+
+```sh
+make test # watch mode
+make test-ci # CI mode / single run
+```
+
+4) Format the codebase:
+
+```sh
+make format
+```
