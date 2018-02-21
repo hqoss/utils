@@ -4,7 +4,14 @@ A collection of light-weight methods and helpers for defensive programming
 
 ## Usage
 
-There are 6 main modules available.
+There are 6 main modules available:
+
+* Async
+* Conditionals
+* Env
+* Helpers
+* Match
+* ThrowIf
 
 ### Async
 
