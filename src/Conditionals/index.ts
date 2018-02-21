@@ -228,7 +228,7 @@ const hasOnlyKeys = (val: any, keys: any[]): boolean => {
 }
 
 /**
- * Find out whether value 1 and value 2 are equal
+ * Find out whether value 1 and value 2 are equal (shallow)
  *
  * @param  {any} val1 to be validated
  * @param  {any} val2 to be validated
