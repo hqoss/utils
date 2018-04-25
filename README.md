@@ -432,7 +432,7 @@ Available methods:
 * `identity`
 * `getRandomIntInclusive`
 * `generateId`
-* `validateId`
+* `isValidId`
 
 ### Examples
 
@@ -488,13 +488,13 @@ generateId() // "Byij0Ka3z"
 
 ```
 
-#### `validateId`
+#### `isValidId`
 
 To confirm whether a value is a valid id (underlying is the `shortid` library) use:
 
 ```typescript
-validateId("HJ5fy5p3G") // true
-validateId("foo") // false
+isValidId("HJ5fy5p3G") // true
+isValidId("foo") // false
 
 ```
 

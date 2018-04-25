@@ -1,6 +1,6 @@
 import * as id from "shortid"
 
-import { noop, identity, getRandomIntInclusive, generateId, validateId } from "."
+import { noop, identity, getRandomIntInclusive, generateId, isValidId } from "."
 
 jest.mock("shortid", () => ({
   generate: jest.fn(),
@@ -96,13 +96,13 @@ describe("Helpers", () => {
     })
   })
 
-  describe("validateId", () => {
+  describe("isValidId", () => {
     test("validates an id", () => {
       ;(id.isValid as any).mockImplementationOnce(() => true)
       ;(id.isValid as any).mockImplementationOnce(() => false)
 
-      expect(validateId("foo")).toEqual(true)
-      expect(validateId("foo")).toEqual(false)
+      expect(isValidId("foo")).toEqual(true)
+      expect(isValidId("foo")).toEqual(false)
     })
   })
 })

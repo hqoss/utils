@@ -56,6 +56,6 @@ const generateId = (): string => id.generate()
  * @param {any} val
  * @returns {String}
  */
-const validateId = (val: any): val is string => id.isValid(val)
+const isValidId = (val: any): val is string => id.isValid(val)
 
-export { noop, identity, getRandomIntInclusive, generateId, validateId }
+export { noop, identity, getRandomIntInclusive, generateId, isValidId }
