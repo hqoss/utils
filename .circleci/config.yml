@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/src
   docker:
-    - image: openmaths/circle-ci
+    - image: openmaths/circle-ci:latest@sha256:1e0675d023d8fc7d0c3ebe2395553d4315afaee5b0118fcff56486e7e1fc63ce
 
 whitelist: &whitelist
   paths:
