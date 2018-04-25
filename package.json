@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@openmaths/graph-events": "^1.2.0",
-    "@threestup/monads": "^0.4.0"
+    "@threestup/monads": "^0.4.0",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "@types/jest": "22.1.1",
     "@types/node": "8.5.9",
+    "@types/shortid": "0.0.29",
     "jest": "22.1.4",
     "prettier": "1.10.2",
     "prettier-standard": "8.0.0",

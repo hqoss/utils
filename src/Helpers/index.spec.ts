@@ -1,4 +1,11 @@
-import { noop, identity, getRandomIntInclusive } from "."
+import * as id from "shortid"
+
+import { noop, identity, getRandomIntInclusive, generateId, validateId } from "."
+
+jest.mock("shortid", () => ({
+  generate: jest.fn(),
+  isValid: jest.fn(),
+}))
 
 describe("Helpers", () => {
   describe("noop", () => {
@@ -77,6 +84,25 @@ describe("Helpers", () => {
         expect(subject >= scenario.min).toEqual(true)
         expect(subject <= scenario.max).toEqual(true)
       })
+    })
+  })
+
+  describe("generateId", () => {
+    test("generates a random id", () => {
+      ;(id.generate as any).mockImplementationOnce(() => "abc-123")
+
+      const subject = generateId()
+      expect(subject).toEqual("abc-123")
+    })
+  })
+
+  describe("validateId", () => {
+    test("validates an id", () => {
+      ;(id.isValid as any).mockImplementationOnce(() => true)
+      ;(id.isValid as any).mockImplementationOnce(() => false)
+
+      expect(validateId("foo")).toEqual(true)
+      expect(validateId("foo")).toEqual(false)
     })
   })
 })

@@ -431,6 +431,8 @@ Available methods:
 * `noop`
 * `identity`
 * `getRandomIntInclusive`
+* `generateId`
+* `validateId`
 
 ### Examples
 
@@ -473,6 +475,26 @@ To get a random integer within a specified range, you can use the following:
 
 ```typescript
 getRandomIntInclusive(10, 99) // Yields integers between 10 and 99
+
+```
+
+#### `generateId`
+
+To get a random id (underlying is the `shortid` library) use:
+
+```typescript
+generateId() // "HJ5fy5p3G"
+generateId() // "Byij0Ka3z"
+
+```
+
+#### `validateId`
+
+To confirm whether a value is a valid id (underlying is the `shortid` library) use:
+
+```typescript
+validateId("HJ5fy5p3G") // true
+validateId("foo") // false
 
 ```
 

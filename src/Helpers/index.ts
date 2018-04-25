@@ -1,3 +1,5 @@
+import * as id from "shortid"
+
 import { isEqual } from "../Conditionals"
 import { throwIfNotNumber } from "../ThrowIf"
 
@@ -41,4 +43,19 @@ const getRandomIntInclusive = (min: number, max: number): number => {
   }
 }
 
-export { noop, identity, getRandomIntInclusive }
+/**
+ * Returns a random id
+ *
+ * @returns {String}
+ */
+const generateId = (): string => id.generate()
+
+/**
+ * Validates an id
+ *
+ * @param {any} val
+ * @returns {String}
+ */
+const validateId = (val: any): val is string => id.isValid(val)
+
+export { noop, identity, getRandomIntInclusive, generateId, validateId }
