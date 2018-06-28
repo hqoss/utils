@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/jest": "22.1.1",
-    "@types/node": "8.5.9",
+    "@types/node": "8.10.20",
     "@types/shortid": "0.0.29",
     "jest": "22.1.4",
     "prettier": "1.10.2",
