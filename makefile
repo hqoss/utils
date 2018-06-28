@@ -32,4 +32,5 @@ test-ci:
 	--config=${jest_config_file} \
 	--coverage \
 	--runInBand \
+	--silent \
 	--verbose
