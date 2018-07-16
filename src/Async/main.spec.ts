@@ -1,4 +1,4 @@
-import { makeRecoverable } from "."
+import { makeRecoverable } from "./main"
 
 describe("Async", () => {
   describe("makeRecoverable", () => {
@@ -18,10 +18,33 @@ describe("Async", () => {
       }
     })
 
+    test("throws if `timeoutPerError` is not a non-negative integer", async () => {
+      try {
+        await makeRecoverable(() => Promise.resolve(), 3, "750" as any)
+      } catch (err) {
+        expect(err.message).toMatch(/timeoutPerError must be a positive integer/)
+      }
+    })
+
     test("resolves `source`", async () => {
       const source = () => Promise.resolve(42)
       const subject = await makeRecoverable(source)
       expect(subject).toEqual(42)
+    })
+
+    test("throws if promise times out", async () => {
+      // @TODO figure out how to use timer mocks here..
+      const source = () =>
+        new Promise((resolve, _reject) => {
+          setTimeout(() => resolve("OK"), 10)
+        })
+
+      try {
+        await makeRecoverable(source, 0, 5)
+      } catch (err) {
+        expect(err.name).toEqual("Error")
+        expect(err.message).toMatch(/Promise timed out after 5 ms/)
+      }
     })
 
     describe("on error", () => {
@@ -54,7 +77,7 @@ describe("Async", () => {
         const recoverableError = TypeError
 
         try {
-          await makeRecoverable(source, maxRetries, recoverableError)
+          await makeRecoverable(source, maxRetries, 750, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(1)
         }
@@ -67,7 +90,7 @@ describe("Async", () => {
         const recoverableError = SyntaxError
 
         try {
-          await makeRecoverable(source, maxRetries, recoverableError)
+          await makeRecoverable(source, maxRetries, 750, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(maxRetries + 1)
         }

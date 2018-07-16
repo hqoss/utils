@@ -1,4 +1,4 @@
-import * as Conditional from "../Conditionals"
+import * as Conditional from "../Conditionals/main"
 import { Conditional as ConditionalFn, Constructable } from "../types"
 
 /**

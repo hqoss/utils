@@ -1,4 +1,6 @@
-import { getAsBool, getAsInt, getAsStr } from "."
+import { env } from "./main"
+
+const { getAsBool, getAsInt, getAsStr } = env
 
 describe("env", () => {
   beforeEach(() => {

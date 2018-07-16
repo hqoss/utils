@@ -1,5 +1,5 @@
-import * as Conditional from "."
-import { noop } from "../Helpers"
+import * as Conditional from "./main"
+import { noop } from "../Helpers/main"
 import { Conditional as ConditionalFn } from "../types"
 
 describe("Conditionals", () => {

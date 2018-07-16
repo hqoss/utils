@@ -1,6 +1,6 @@
 import * as id from "shortid"
 
-import { noop, identity, getRandomIntInclusive, generateId, isValidId } from "."
+import { noop, identity, getRandomIntInclusive, generateId, isValidId } from "./main"
 
 jest.mock("shortid", () => ({
   generate: jest.fn(),

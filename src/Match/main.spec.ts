@@ -1,4 +1,4 @@
-import { match, _def } from "."
+import { match, _def } from "./main"
 
 describe("Helper", () => {
   describe("match", () => {
