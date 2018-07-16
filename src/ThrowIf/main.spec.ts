@@ -1,4 +1,4 @@
-import * as ThrowIf from "."
+import * as ThrowIf from "./main"
 
 describe("ThrowIf", () => {
   describe("makeThrowable", () => {

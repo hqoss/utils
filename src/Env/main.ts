@@ -1,5 +1,5 @@
-import { isBoolean, isInteger, isPresent } from "../Conditionals"
-import { throwIfMissing } from "../ThrowIf"
+import { isBoolean, isInteger, isPresent } from "../Conditionals/main"
+import { throwIfMissing } from "../ThrowIf/main"
 
 /**
  * Attempts to retrieve and parse a value from process.env,
@@ -83,4 +83,10 @@ function getAsStr(key: string, env = process.env): string {
   return value as string
 }
 
-export { getAsBool, getAsInt, getAsStr }
+const env = {
+  getAsBool,
+  getAsInt,
+  getAsStr,
+}
+
+export { env }

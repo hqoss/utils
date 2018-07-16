@@ -1,7 +1,7 @@
 import * as id from "shortid"
 
-import { isEqual } from "../Conditionals"
-import { throwIfNotNumber } from "../ThrowIf"
+import { isEqual } from "../Conditionals/main"
+import { throwIfNotNumber } from "../ThrowIf/main"
 
 /**
  * Returns void

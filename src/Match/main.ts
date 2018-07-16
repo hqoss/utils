@@ -6,8 +6,8 @@ import {
   isFunction,
   isObject,
   isEqual,
-} from "../Conditionals"
-import { throwIfMissing, throwIfEmptyArray } from "../ThrowIf"
+} from "../Conditionals/main"
+import { throwIfMissing, throwIfEmptyArray } from "../ThrowIf/main"
 import { MatchArm } from "../types"
 
 const _def = Symbol("_def")
