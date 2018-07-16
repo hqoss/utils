@@ -1,4 +1,4 @@
-import { isPresent, isTrue, isNonNegativeInteger } from "../Conditionals/main"
+import { isPresent, isTrue } from "../Conditionals/main"
 import {
   throwIfNotFunction,
   throwIfNegativeInteger,
@@ -8,24 +8,17 @@ import { Constructable } from "../types"
 
 type Source<T> = () => Promise<T>
 
-const timeout = (timeoutMs: number): Promise<never> =>
-  new Promise((_resolve, reject) => {
-    setTimeout(() => reject(new Error(`Promise timed out after ${timeoutMs} ms`)), timeoutMs)
-  })
-
 /**
- * Makes a Promise-returning function recoverable (attempts retries, forces timeouts)
+ * Makes a Promise-returning function recoverable (attempts retries)
  *
  * @param  {<T>() => Promise<T>} source
  * @param  {Integer} maxRetries
- * @param  {Integer} timeoutPerError
  * @param  {Error} recoverableError
  * @returns {<T>() => Promise<T>}
  */
 const makeRecoverable = async <T = any>(
   source: Source<T>,
   maxRetries = 3,
-  timeoutPerError: number | null = null,
   recoverableError?: Constructable<Error>,
 ) => {
   let retries = 0
@@ -39,11 +32,7 @@ const makeRecoverable = async <T = any>(
 
   const exec = async (): Promise<T> => {
     try {
-      if (isNonNegativeInteger(timeoutPerError)) {
-        return await Promise.race([source(), timeout(timeoutPerError)])
-      } else {
-        return await source()
-      }
+      return await source()
     } catch (err) {
       const conditions = [retries < maxRetries]
 

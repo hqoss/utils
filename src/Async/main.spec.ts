@@ -24,21 +24,6 @@ describe("Async", () => {
       expect(subject).toEqual(42)
     })
 
-    test("throws if promise times out", async () => {
-      // @TODO figure out how to use timer mocks here..
-      const source = () =>
-        new Promise((resolve, _reject) => {
-          setTimeout(() => resolve("OK"), 10)
-        })
-
-      try {
-        await makeRecoverable(source, 0, 5)
-      } catch (err) {
-        expect(err.name).toEqual("Error")
-        expect(err.message).toMatch(/Promise timed out after 5 ms/)
-      }
-    })
-
     describe("on error", () => {
       test("rethrows original error if no retry policy is configured", async () => {
         const source = () => Promise.reject(new TypeError("Error!"))
@@ -69,7 +54,7 @@ describe("Async", () => {
         const recoverableError = TypeError
 
         try {
-          await makeRecoverable(source, maxRetries, 750, recoverableError)
+          await makeRecoverable(source, maxRetries, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(1)
         }
@@ -82,7 +67,7 @@ describe("Async", () => {
         const recoverableError = SyntaxError
 
         try {
-          await makeRecoverable(source, maxRetries, 750, recoverableError)
+          await makeRecoverable(source, maxRetries, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(maxRetries + 1)
         }

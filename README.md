@@ -35,22 +35,12 @@ function getUsers() {
 
 ```
 
-The below will retry 3 times, each try will reject with a timeout error if no response has been received within 500 ms.
-
-```typescript
-function getUsers() {
-  const source = () => http.get("/api/users")
-  return makeRecoverable(source, 3, 500)
-}
-
-```
-
 The below will retry thrice if the error caught is a `SyntaxError`.
 
 ```typescript
 function initService() {
   const source = () => service.init()
-  return makeRecoverable(source, 3, null, SyntaxError)
+  return makeRecoverable(source, 3, SyntaxError)
 }
 
 ```
