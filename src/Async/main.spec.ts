@@ -18,14 +18,6 @@ describe("Async", () => {
       }
     })
 
-    test("throws if `timeoutPerError` is not a non-negative integer", async () => {
-      try {
-        await makeRecoverable(() => Promise.resolve(), 3, "750" as any)
-      } catch (err) {
-        expect(err.message).toMatch(/timeoutPerError must be a positive integer/)
-      }
-    })
-
     test("resolves `source`", async () => {
       const source = () => Promise.resolve(42)
       const subject = await makeRecoverable(source)

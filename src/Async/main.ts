@@ -1,4 +1,4 @@
-import { isPresent, isTrue } from "../Conditionals/main"
+import { isPresent, isTrue, isNonNegativeInteger } from "../Conditionals/main"
 import {
   throwIfNotFunction,
   throwIfNegativeInteger,
@@ -25,14 +25,13 @@ const timeout = (timeoutMs: number): Promise<never> =>
 const makeRecoverable = async <T = any>(
   source: Source<T>,
   maxRetries = 3,
-  timeoutPerError = 750,
+  timeoutPerError: number | null = null,
   recoverableError?: Constructable<Error>,
 ) => {
   let retries = 0
 
   throwIfNotFunction(source, "source must be a function")
   throwIfNegativeInteger(maxRetries, "maxRetries must be a positive integer")
-  throwIfNegativeInteger(timeoutPerError, "timeoutPerError must be a positive integer")
 
   if (isPresent(recoverableError)) {
     throwIfNotConstructable(recoverableError, "recoverableError must be constructable")
@@ -40,7 +39,11 @@ const makeRecoverable = async <T = any>(
 
   const exec = async (): Promise<T> => {
     try {
-      return await Promise.race([source(), timeout(timeoutPerError)])
+      if (isNonNegativeInteger(timeoutPerError)) {
+        return await Promise.race([source(), timeout(timeoutPerError)])
+      } else {
+        return await source()
+      }
     } catch (err) {
       const conditions = [retries < maxRetries]
 

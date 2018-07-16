@@ -35,17 +35,27 @@ function getUsers() {
 
 ```
 
-The below will retry thrice if the error caught is a `TimeoutError`.
+The below will retry 3 times, each try will reject with a timeout error if no response has been received within 500 ms.
 
 ```typescript
-function initService() {
-  const source = () => service.init()
-  return makeRecoverable(source, 3, TimeoutError)
+function getUsers() {
+  const source = () => http.get("/api/users")
+  return makeRecoverable(source, 3, 500)
 }
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/index.spec.ts).**
+The below will retry thrice if the error caught is a `SyntaxError`.
+
+```typescript
+function initService() {
+  const source = () => service.init()
+  return makeRecoverable(source, 3, null, SyntaxError)
+}
+
+```
+
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/main.spec.ts).**
 
 ---
 
@@ -355,7 +365,7 @@ isEqual(false, true) // false
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Conditionals/index.spec.ts).**
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Conditionals/main.spec.ts).**
 
 ---
 
@@ -366,6 +376,17 @@ Available methods:
 * `getAsBool`
 * `getAsInt`
 * `getAsStr`
+
+NOTE: These methods are namespaced under `env`. The usage is therefore
+
+```typescript
+import { env } from "@openmaths/utils"
+
+env.getAsBool(...)
+env.getAsInt(...)
+env.getAsStr(...)
+
+```
 
 ### Examples
 
@@ -378,34 +399,34 @@ API_KEY=0351f02f-0be2-49d1-bfed-5c45275d4fd2
 
 ```
 
-#### `getAsBool`
+#### `env.getAsBool`
 
 To retrieve the Boolean value of `"IS_PROD"` from `process.env`, you can use the following method.
 
 ```typescript
-getAsBool("IS_PROD") // true
+env.getAsBool("IS_PROD") // true
 
 ```
 
 If the raw value cannot be found, or the parsed value is not a Boolean, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
 
-#### `getAsInt`
+#### `env.getAsInt`
 
 To retrieve the Integer value of `"ASYNC_MAX_TIMEOUT"` from `process.env`, you can use the following method.
 
 ```typescript
-getAsInt("ASYNC_MAX_TIMEOUT") // 2500
+env.getAsInt("ASYNC_MAX_TIMEOUT") // 2500
 
 ```
 
 If the raw value cannot be found, or the parsed value is not an Integer, **this function will throw** a `ReferenceError` or a `TypeError` respectively.
 
-#### `getAsStr`
+#### `env.getAsStr`
 
 To retrieve the String value of `"API_KEY"` from `process.env`, you can use the following method.
 
 ```typescript
-getAsStr("API_KEY") // "0351f02f-0be2-49d1-bfed-5c45275d4fd2"
+env.getAsStr("API_KEY") // "0351f02f-0be2-49d1-bfed-5c45275d4fd2"
 
 ```
 
@@ -416,11 +437,11 @@ In all of the above, you can also use your own env object like so:
 ```typescript
 // const env = { "IS_DEV": "false" }
 
-getAsBool("IS_DEV", env) // false
+env.getAsBool("IS_DEV", env) // false
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Env/index.spec.ts).**
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Env/main.spec.ts).**
 
 ---
 
@@ -498,7 +519,7 @@ isValidId("foo") // false
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Helpers/index.spec.ts).**
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Helpers/main.spec.ts).**
 
 ---
 
@@ -557,7 +578,7 @@ getMessage(1333) // "Unfortunately, we cannot tell what year it is."
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Match/index.spec.ts).**
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Match/main.spec.ts).**
 
 ---
 
@@ -601,7 +622,7 @@ throwIfMissing(someValue, '`someValue` missing!', ReferenceError); // throws Ref
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/ThrowIf/index.spec.ts).**
+**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/ThrowIf/main.spec.ts).**
 
 ---
 
