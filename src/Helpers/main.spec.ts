@@ -1,7 +1,16 @@
 import * as id from "shortid"
 import { v4 } from "uuid"
+import * as validateUUID from "uuid-validate"
 
-import { noop, identity, getRandomIntInclusive, generateId, isValidId, generateUUID } from "./main"
+import {
+  noop,
+  identity,
+  getRandomIntInclusive,
+  generateId,
+  isValidId,
+  generateUUID,
+  isValidUUID,
+} from "./main"
 
 jest
   .mock("shortid", () => ({
@@ -11,6 +20,7 @@ jest
   .mock("uuid", () => ({
     v4: jest.fn(),
   }))
+  .mock("uuid-validate", () => jest.fn())
 
 describe("Helpers", () => {
   describe("noop", () => {
@@ -112,11 +122,21 @@ describe("Helpers", () => {
   })
 
   describe("generateUUID", () => {
-    test("generates a random id", () => {
+    test("generates a uuid", () => {
       ;(v4 as any).mockImplementationOnce(() => "abc-123-def-456")
 
       const subject = generateUUID()
       expect(subject).toEqual("abc-123-def-456")
+    })
+  })
+
+  describe("isValidUUID", () => {
+    test("validates a uuid", () => {
+      const uuid = "95ecc380-afe9-11e4-9b6c-751b66dd541e"
+      ;(validateUUID as any).mockImplementationOnce(() => true)
+      expect(isValidUUID(uuid)).toEqual(true)
+      ;(validateUUID as any).mockImplementationOnce(() => false)
+      expect(isValidUUID(uuid)).toEqual(false)
     })
   })
 })

@@ -1,5 +1,6 @@
 import * as id from "shortid"
 import { v4 } from "uuid"
+import * as validateUUID from "uuid-validate"
 
 import { isEqual } from "../Conditionals/main"
 import { throwIfNotNumber } from "../ThrowIf/main"
@@ -66,4 +67,12 @@ const isValidId = (val: any): val is string => id.isValid(val)
  */
 const generateUUID = (): string => v4()
 
-export { noop, identity, getRandomIntInclusive, generateId, isValidId, generateUUID }
+/**
+ * Validates a UUID
+ *
+ * @param {any} val
+ * @returns {String}
+ */
+const isValidUUID = (val: any): val is string => validateUUID(val)
+
+export { noop, identity, getRandomIntInclusive, generateId, isValidId, generateUUID, isValidUUID }
