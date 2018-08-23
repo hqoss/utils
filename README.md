@@ -2,8 +2,6 @@
 
 A collection of light-weight methods and helpers for defensive programming
 
-Docs also available [here](https://slavovojacek.gitbooks.io/js-utils/content/).
-
 ## Usage
 
 There are 6 main modules available:

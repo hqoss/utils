@@ -1,7 +1,7 @@
 {
   "name": "@openmaths/utils",
   "version": "4.0.0",
-  "description": "The Utils module",
+  "description": "A collection of light-weight methods and helpers for defensive programming",
   "main": "./dist/main.js",
   "typings": "./dist/main.d.ts",
   "engines": {
