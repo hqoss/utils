@@ -93,9 +93,12 @@ workflows:
   build:
     jobs:
       - checkout
-      - build:
+      - check-format:
           requires:
             - checkout
+      - build:
+          requires:
+            - check-format
       - test:
           requires:
             - build
@@ -111,7 +114,7 @@ workflows:
               only: /v[0-9]+(\.[0-9]+)*/
             branches:
               ignore: /.*/
-      - build:
+      - check-format:
           filters:
             tags:
               only: /v[0-9]+(\.[0-9]+)*/
@@ -119,6 +122,14 @@ workflows:
               ignore: /.*/
           requires:
             - checkout
+      - build:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - check-format
       - test:
           filters:
             tags:
