@@ -1,8 +1,8 @@
 import { isPresent, isTrue } from "../Conditionals/main"
 import {
-  throwIfNotFunction,
   throwIfNegativeInteger,
   throwIfNotConstructable,
+  throwIfNotFunction,
 } from "../ThrowIf/main"
 import { Constructable } from "../types"
 

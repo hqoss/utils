@@ -24,7 +24,7 @@ const makeThrowable = (condition: ConditionalFn, expectedType: string = "") => (
     : `Error – expected "${expectedType}", instead got "${val}: ${typeof val}"`
 
   if (Conditional.isTrue(valid)) {
-    void 0
+    return void 0
   } else {
     throw new err(errorMessage)
   }
@@ -158,7 +158,10 @@ const throwIfEmptyArray = makeThrowable(Conditional.isNonEmptyArray, "Non-empty 
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotPositiveInteger = makeThrowable(Conditional.isPositiveInteger, "Positive Integer")
+const throwIfNotPositiveInteger = makeThrowable(
+  Conditional.isPositiveInteger,
+  "Positive Integer",
+)
 
 /**
  * Throw if a value is a Negative Integer
@@ -181,7 +184,10 @@ const throwIfNegativeInteger = makeThrowable(
  * @throws {TypeError, Error}
  * @returns {void}
  */
-const throwIfNotConstructable = makeThrowable(Conditional.isConstructable, "Constructable")
+const throwIfNotConstructable = makeThrowable(
+  Conditional.isConstructable,
+  "Constructable",
+)
 
 export {
   makeThrowable,

@@ -3,13 +3,14 @@ import { v4 } from "uuid"
 import * as validateUUID from "uuid-validate"
 
 import {
-  noop,
-  identity,
-  getRandomIntInclusive,
+  fill,
   generateId,
-  isValidId,
   generateUUID,
+  getRandomIntInclusive,
+  identity,
+  isValidId,
   isValidUUID,
+  noop,
 } from "./main"
 
 jest
@@ -23,8 +24,14 @@ jest
   .mock("uuid-validate", () => jest.fn())
 
 describe("Helpers", () => {
+  const libs: any = {
+    id,
+    v4,
+    validateUUID,
+  }
+
   describe("noop", () => {
-    test("is a function that does not return", () => {
+    it("is a function that does not return", () => {
       expect(typeof noop).toEqual("function")
       expect(noop()).toBeUndefined()
       expect(noop("Hello, World!")).toBeUndefined()
@@ -33,14 +40,14 @@ describe("Helpers", () => {
   })
 
   describe("identity", () => {
-    test("is a function that returns the value it receives", () => {
+    it("is a function that returns the value it receives", () => {
       expect(typeof identity).toEqual("function")
       expect(identity("Hello, World!")).toEqual("Hello, World!")
     })
   })
 
   describe("getRandomIntInclusive", () => {
-    test("throws if `min` provided is not a number", () => {
+    it("throws if `min` provided is not a number", () => {
       const subjects = [
         () => getRandomIntInclusive("Hello, World!" as any, 1),
         () => getRandomIntInclusive(new Function() as any, 1),
@@ -49,13 +56,13 @@ describe("Helpers", () => {
         () => getRandomIntInclusive(NaN as any, 1),
       ]
 
-      subjects.forEach(subject => {
+      subjects.forEach((subject) => {
         expect(subject).toThrow("must be a number")
         expect(subject).toThrow(TypeError)
       })
     })
 
-    test("throws if `max` provided is not a number", () => {
+    it("throws if `max` provided is not a number", () => {
       const subjects = [
         () => getRandomIntInclusive(0, "Hello, World!" as any),
         () => getRandomIntInclusive(0, new Function() as any),
@@ -64,13 +71,13 @@ describe("Helpers", () => {
         () => getRandomIntInclusive(0, NaN as any),
       ]
 
-      subjects.forEach(subject => {
+      subjects.forEach((subject) => {
         expect(subject).toThrow("must be a number")
         expect(subject).toThrow(TypeError)
       })
     })
 
-    test("throws if `min` provided is greater than `max` provided", () => {
+    it("throws if `min` provided is greater than `max` provided", () => {
       const subjects = [
         () => getRandomIntInclusive(20, -7),
         () => getRandomIntInclusive(-2, -5),
@@ -78,13 +85,13 @@ describe("Helpers", () => {
         () => getRandomIntInclusive(Infinity, Math.PI),
       ]
 
-      subjects.forEach(subject => {
+      subjects.forEach((subject) => {
         expect(subject).toThrow("`min` cannot be greater than `max`")
         expect(subject).toThrow(RangeError)
       })
     })
 
-    test("correctly evaluates for valid scenarios", () => {
+    it("correctly evaluates for valid scenarios", () => {
       const scenarios = [
         { min: 0, max: 20 },
         { min: -10, max: 10 },
@@ -94,7 +101,7 @@ describe("Helpers", () => {
         { min: Math.PI, max: Infinity },
       ]
 
-      scenarios.forEach(scenario => {
+      scenarios.forEach((scenario) => {
         const subject = getRandomIntInclusive(scenario.min, scenario.max)
         expect(subject >= scenario.min).toEqual(true)
         expect(subject <= scenario.max).toEqual(true)
@@ -103,8 +110,8 @@ describe("Helpers", () => {
   })
 
   describe("generateId", () => {
-    test("generates a random id", () => {
-      ;(id.generate as any).mockImplementationOnce(() => "abc-123")
+    it("generates a random id", () => {
+      libs.id.generate.mockImplementationOnce(() => "abc-123")
 
       const subject = generateId()
       expect(subject).toEqual("abc-123")
@@ -112,9 +119,9 @@ describe("Helpers", () => {
   })
 
   describe("isValidId", () => {
-    test("validates an id", () => {
-      ;(id.isValid as any).mockImplementationOnce(() => true)
-      ;(id.isValid as any).mockImplementationOnce(() => false)
+    it("validates an id", () => {
+      libs.id.isValid.mockImplementationOnce(() => true)
+      libs.id.isValid.mockImplementationOnce(() => false)
 
       expect(isValidId("foo")).toEqual(true)
       expect(isValidId("foo")).toEqual(false)
@@ -122,8 +129,8 @@ describe("Helpers", () => {
   })
 
   describe("generateUUID", () => {
-    test("generates a uuid", () => {
-      ;(v4 as any).mockImplementationOnce(() => "abc-123-def-456")
+    it("generates a uuid", () => {
+      libs.v4.mockImplementationOnce(() => "abc-123-def-456")
 
       const subject = generateUUID()
       expect(subject).toEqual("abc-123-def-456")
@@ -131,12 +138,40 @@ describe("Helpers", () => {
   })
 
   describe("isValidUUID", () => {
-    test("validates a uuid", () => {
+    it("validates a uuid", () => {
       const uuid = "95ecc380-afe9-11e4-9b6c-751b66dd541e"
-      ;(validateUUID as any).mockImplementationOnce(() => true)
+      libs.validateUUID.mockImplementationOnce(() => true)
       expect(isValidUUID(uuid)).toEqual(true)
-      ;(validateUUID as any).mockImplementationOnce(() => false)
+      libs.validateUUID.mockImplementationOnce(() => false)
       expect(isValidUUID(uuid)).toEqual(false)
+    })
+  })
+
+  describe("fill", () => {
+    it("fills an array with `n` items", () => {
+      expect(fill(0)).toEqual([])
+      expect(fill(4)).toEqual([0, 1, 2, 3])
+      expect(fill(-4)).toEqual([])
+    })
+
+    it("throws if constructing with a number larger than MAX_SAFE_INTEGER", () => {
+      try {
+        fill(Infinity)
+      } catch (err) {
+        expect(err.name).toEqual("RangeError")
+        expect(err.message).toEqual(
+          `number of items can only be less than ${Number.MAX_SAFE_INTEGER}`,
+        )
+      }
+    })
+
+    it("throws if constructing with not an integer", () => {
+      try {
+        fill(Math.PI)
+      } catch (err) {
+        expect(err.name).toEqual("TypeError")
+        expect(err.message).toEqual("numberOfItems has to be an integer")
+      }
     })
   })
 })

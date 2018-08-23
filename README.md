@@ -444,6 +444,9 @@ Available methods:
 * `getRandomIntInclusive`
 * `generateId`
 * `isValidId`
+* `generateUUID`
+* `isValidUUID`
+* `fill`
 
 ### Examples
 
@@ -506,6 +509,35 @@ To confirm whether a value is a valid id (underlying is the `shortid` library) u
 ```typescript
 isValidId("HJ5fy5p3G") // true
 isValidId("foo") // false
+
+```
+
+#### `generateUUID`
+
+To get a random UUID v4 (underlying is the `uuid` library) use:
+
+```typescript
+generateUUID() // "b98c5086-1dcc-4822-9fa4-8f343f18e8de"
+generateUUID() // "7118f7d9-70b1-4cb2-97da-3fe272bed7e8"
+
+```
+
+#### `isValidId`
+
+To confirm whether a value is a valid UUID v4 (underlying is the `uuid` library) use:
+
+```typescript
+isValidUUID("1ad006bf-00c0-49de-bcf0-7c5eb2f83241") // true
+isValidUUID("foo") // false
+
+```
+
+#### `fill`
+
+To fill an array, use:
+
+```typescript
+fill(4) // [0, 1, 2, 3]
 
 ```
 

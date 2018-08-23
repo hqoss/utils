@@ -31,7 +31,9 @@ function getAsBool(key: string, env = process.env): boolean {
   if (isPresent(parsedValue)) {
     return parsedValue as boolean
   } else {
-    throw new TypeError(`env.${key} has to be of type Boolean; was parsed as ${type} instead`)
+    throw new TypeError(
+      `env.${key} has to be of type Boolean; was parsed as ${type} instead`,
+    )
   }
 }
 
@@ -65,7 +67,9 @@ function getAsInt(key: string, env = process.env): number {
   if (isPresent(parsedValue)) {
     return parsedValue as number
   } else {
-    throw new TypeError(`env.${key} has to be of type Integer; was parsed as ${type} instead`)
+    throw new TypeError(
+      `env.${key} has to be of type Integer; was parsed as ${type} instead`,
+    )
   }
 }
 
@@ -83,10 +87,8 @@ function getAsStr(key: string, env = process.env): string {
   return value as string
 }
 
-const env = {
+export default {
   getAsBool,
   getAsInt,
   getAsStr,
 }
-
-export { env }

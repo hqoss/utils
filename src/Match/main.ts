@@ -1,13 +1,13 @@
 import {
+  isArray,
+  isEqual,
+  isFunction,
+  isNonEmptyArray,
+  isObject,
   isPresent,
   isTrue,
-  isNonEmptyArray,
-  isArray,
-  isFunction,
-  isObject,
-  isEqual,
 } from "../Conditionals/main"
-import { throwIfMissing, throwIfEmptyArray } from "../ThrowIf/main"
+import { throwIfEmptyArray, throwIfMissing } from "../ThrowIf/main"
 import { MatchArm } from "../types"
 
 const _def = Symbol("_def")
@@ -17,13 +17,13 @@ const _def = Symbol("_def")
  *
  * @returns {Array}
  */
-const normalizeBasicMatcher = (arms: Object = {}): MatchArm[] => {
+const normalizeBasicMatcher = (arms: object = {}): MatchArm[] => {
   const ownPropSymbols: any[] = Object.getOwnPropertySymbols(arms)
   const ownPropNames: any[] = Object.getOwnPropertyNames(arms)
 
   return ownPropSymbols
     .concat(ownPropNames)
-    .map(key => ({ matchExpression: key, evaluation: (arms as any)[key] }))
+    .map((key) => ({ matchExpression: key, evaluation: (arms as any)[key] }))
 }
 
 /**
@@ -55,22 +55,27 @@ const match = (val: any) => (...args: any[]) => {
   }
 
   const normalizedArms: Array<MatchArm> = isObject(matcher)
-    ? normalizeBasicMatcher(matcher as Object)
+    ? normalizeBasicMatcher(matcher as object)
     : normalizeAdvancedMatcher([matcher, ...potentialRestOfMatcher])
 
   throwIfEmptyArray(normalizedArms, "`matcher` has to contain at least one arm")
 
-  const defaultArm = normalizedArms.find(arm => arm.matchExpression === _def)
+  const defaultArm = normalizedArms.find((arm) => arm.matchExpression === _def)
 
-  throwIfMissing(defaultArm, "`matcher` needs to contain a default `_def` arm", ReferenceError)
+  throwIfMissing(
+    defaultArm,
+    "`matcher` needs to contain a default `_def` arm",
+    ReferenceError,
+  )
 
   const explicitMatch = normalizedArms.find(({ matchExpression }) => {
     if (matchExpression === _def) {
       return false
+    } else {
+      return isFunction(matchExpression)
+        ? isTrue(matchExpression(val))
+        : isEqual(matchExpression, val)
     }
-    return isFunction(matchExpression)
-      ? isTrue((matchExpression as Function)(val)) // @TODO why does the type guard above not work?
-      : isEqual(matchExpression, val)
   })
 
   if (isPresent(explicitMatch)) {

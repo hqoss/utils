@@ -106,6 +106,7 @@ const isInteger = (val: any): val is number => {
  * @param  {any} val to be validated
  * @returns {Boolean} true if value is of type Function, else false
  */
+// tslint:disable-next-line:ban-types
 const isFunction = (val: any): val is Function => {
   return isPresent(val) && typeof val === "function"
 }
@@ -201,7 +202,7 @@ const isConstructable = (val: any): val is Constructable => {
 
   if (result) {
     try {
-      new val()
+      new val() // tslint:disable-line:no-unused-expression
       result = true
     } catch (err) {
       result = !isNonNegativeInteger(err.message.indexOf("is not a constructor"))
@@ -221,8 +222,11 @@ const isConstructable = (val: any): val is Constructable => {
 const hasOnlyKeys = (val: any, keys: any[]): boolean => {
   if (isObject(val) && isArray(keys)) {
     const objKeys = Object.keys(val)
-    const propertiesInKeys = keys.filter(key => key in val)
-    return isEqual(propertiesInKeys.length, objKeys.length) && isEqual(objKeys.length, keys.length)
+    const propertiesInKeys = keys.filter((key) => key in val)
+    return (
+      isEqual(propertiesInKeys.length, objKeys.length) &&
+      isEqual(objKeys.length, keys.length)
+    )
   }
   return false
 }

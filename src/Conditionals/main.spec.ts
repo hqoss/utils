@@ -1,6 +1,6 @@
-import * as Conditional from "./main"
 import { noop } from "../Helpers/main"
 import { Conditional as ConditionalFn } from "../types"
+import * as Conditional from "./main"
 
 describe("Conditionals", () => {
   interface ConditionalConfig {
@@ -11,13 +11,13 @@ describe("Conditionals", () => {
   }
 
   const runTests = (configs: ConditionalConfig[]) =>
-    configs.forEach(config => {
+    configs.forEach((config) => {
       if (config.args) {
-        test(`correctly evaluates for "${JSON.stringify(config.args)}"`, () => {
+        it(`correctly evaluates for "${JSON.stringify(config.args)}"`, () => {
           expect(config.method(...(config.args as any))).toEqual(config.expected)
         })
       } else {
-        test(`correctly evaluates for "${JSON.stringify(config.val)}"`, () => {
+        it(`correctly evaluates for "${JSON.stringify(config.val)}"`, () => {
           expect(config.method(config.val)).toEqual(config.expected)
         })
       }
@@ -986,7 +986,7 @@ describe("Conditionals", () => {
       {
         method: Conditional.isConstructable,
         val: noop,
-        expected: false,
+        expected: true,
       },
       {
         method: Conditional.isConstructable,
@@ -995,17 +995,19 @@ describe("Conditionals", () => {
       },
       {
         method: Conditional.isConstructable,
-        val: function a() {},
+        val: function a(): void {
+          return void 0
+        },
         expected: true,
       },
       {
         method: Conditional.isConstructable,
-        val: class {},
+        val: class {}, // tslint:disable-line:max-classes-per-file
         expected: true,
       },
       {
         method: Conditional.isConstructable,
-        val: class ClassName {},
+        val: class ClassName {}, // tslint:disable-line:max-classes-per-file
         expected: true,
       },
     ]

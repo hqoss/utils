@@ -3,14 +3,16 @@ import { v4 } from "uuid"
 import * as validateUUID from "uuid-validate"
 
 import { isEqual } from "../Conditionals/main"
-import { throwIfNotNumber } from "../ThrowIf/main"
+import { throwIfNotInteger, throwIfNotNumber } from "../ThrowIf/main"
 
 /**
  * Returns void
  *
  * @returns {void}
  */
-const noop = (..._args: any[]): void => {}
+function noop(..._args: any[]): void {
+  return void 0
+}
 
 /**
  * Returns itself
@@ -18,7 +20,9 @@ const noop = (..._args: any[]): void => {}
  * @param {any} val to be returned
  * @returns {val}
  */
-const identity = <T>(val: T): T => val
+function identity<T>(val: T): T {
+  return val
+}
 
 /**
  * Returns a random integer in the range provided
@@ -27,7 +31,7 @@ const identity = <T>(val: T): T => val
  * @param {Number} max
  * @returns {Number} random integer within the range
  */
-const getRandomIntInclusive = (min: number, max: number): number => {
+function getRandomIntInclusive(min: number, max: number): number {
   // @TODO investigate the use of generators
   throwIfNotNumber(min, `min "${min}" must be a number`, TypeError)
   throwIfNotNumber(max, `max "${max}" must be a number`, TypeError)
@@ -50,7 +54,9 @@ const getRandomIntInclusive = (min: number, max: number): number => {
  *
  * @returns {String}
  */
-const generateId = (): string => id.generate()
+function generateId(): string {
+  return id.generate()
+}
 
 /**
  * Validates an id
@@ -58,14 +64,18 @@ const generateId = (): string => id.generate()
  * @param {any} val
  * @returns {String}
  */
-const isValidId = (val: any): val is string => id.isValid(val)
+function isValidId(val: any): val is string {
+  return id.isValid(val)
+}
 
 /**
  * Returns a UUID V4
  *
  * @returns {String}
  */
-const generateUUID = (): string => v4()
+function generateUUID(): string {
+  return v4()
+}
 
 /**
  * Validates a UUID
@@ -73,6 +83,39 @@ const generateUUID = (): string => v4()
  * @param {any} val
  * @returns {String}
  */
-const isValidUUID = (val: any): val is string => validateUUID(val)
+function isValidUUID(val: any): val is string {
+  return validateUUID(val)
+}
 
-export { noop, identity, getRandomIntInclusive, generateId, isValidId, generateUUID, isValidUUID }
+/**
+ * Fills an array with n items
+ *
+ * @param {Number} numberOfItems
+ * @returns {Array<Number>}
+ */
+function fill(numberOfItems: number): Array<number> {
+  const maxSafeInt = Number.MAX_SAFE_INTEGER
+
+  if (numberOfItems >= maxSafeInt) {
+    throw new RangeError(`number of items can only be less than ${maxSafeInt}`)
+  }
+
+  throwIfNotInteger(numberOfItems, `numberOfItems has to be an integer`)
+
+  if (numberOfItems > 0) {
+    return Array.from(Array(numberOfItems).keys())
+  } else {
+    return []
+  }
+}
+
+export {
+  noop,
+  identity,
+  getRandomIntInclusive,
+  generateId,
+  isValidId,
+  generateUUID,
+  isValidUUID,
+  fill,
+}

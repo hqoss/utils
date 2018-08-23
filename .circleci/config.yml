@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/src
   docker:
-    - image: openmaths/circle-ci
+    - image: circleci/node:9.11
 
 whitelist: &whitelist
   paths:
@@ -24,6 +24,21 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/src
+          <<: *whitelist
+
+  check-format:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/src
+      - run:
+          name: Check formatting
+          command: make check-format
+      - run:
+          name: Run linter
+          command: make lint
       - persist_to_workspace:
           root: ~/src
           <<: *whitelist

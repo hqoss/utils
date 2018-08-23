@@ -2,7 +2,7 @@ import { makeRecoverable } from "./main"
 
 describe("Async", () => {
   describe("makeRecoverable", () => {
-    test("throws if `source` is not a function", async () => {
+    it("throws if `source` is not a function", async () => {
       try {
         await makeRecoverable("Some Value" as any)
       } catch (err) {
@@ -10,7 +10,7 @@ describe("Async", () => {
       }
     })
 
-    test("throws if `maxRetries` is not a non-negative integer", async () => {
+    it("throws if `maxRetries` is not a non-negative integer", async () => {
       try {
         await makeRecoverable(() => Promise.resolve(), "42" as any)
       } catch (err) {
@@ -18,14 +18,14 @@ describe("Async", () => {
       }
     })
 
-    test("resolves `source`", async () => {
+    it("resolves `source`", async () => {
       const source = () => Promise.resolve(42)
       const subject = await makeRecoverable(source)
       expect(subject).toEqual(42)
     })
 
     describe("on error", () => {
-      test("rethrows original error if no retry policy is configured", async () => {
+      it("rethrows original error if no retry policy is configured", async () => {
         const source = () => Promise.reject(new TypeError("Error!"))
         try {
           await makeRecoverable(source, 0)
@@ -35,7 +35,7 @@ describe("Async", () => {
         }
       })
 
-      test("retries if basic retry policy is configured", async () => {
+      it("retries if basic retry policy is configured", async () => {
         const source = jest.fn(() => Promise.reject(new SyntaxError("Err")))
         const maxRetries = 5
         try {
@@ -47,7 +47,7 @@ describe("Async", () => {
         }
       })
 
-      test("does not retry if retry error configuration does not match error type", async () => {
+      it("does not retry if retry error configuration does not match error type", async () => {
         const source = jest.fn(() => Promise.reject(new ReferenceError("RefErr")))
 
         const maxRetries = 3
@@ -60,7 +60,7 @@ describe("Async", () => {
         }
       })
 
-      test("retries if retry policy includes correctly configured error type", async () => {
+      it("retries if retry policy includes correctly configured error type", async () => {
         const source = jest.fn(() => Promise.reject(new SyntaxError("SyntaxErr")))
 
         const maxRetries = 3
