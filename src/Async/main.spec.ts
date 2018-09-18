@@ -47,6 +47,18 @@ describe("Async", () => {
         }
       })
 
+      it("retries after a timeout if delay is configured", async () => {
+        const source = jest.fn(() => Promise.reject(new SyntaxError("Err")))
+        const maxRetries = 3
+        try {
+          await makeRecoverable(source, maxRetries, 100)
+        } catch (err) {
+          expect(source).toHaveBeenCalledTimes(maxRetries + 1)
+          expect(err.name).toEqual("SyntaxError")
+          expect(err.message).toEqual("Err")
+        }
+      })
+
       it("does not retry if retry error configuration does not match error type", async () => {
         const source = jest.fn(() => Promise.reject(new ReferenceError("RefErr")))
 
@@ -54,7 +66,7 @@ describe("Async", () => {
         const recoverableError = TypeError
 
         try {
-          await makeRecoverable(source, maxRetries, recoverableError)
+          await makeRecoverable(source, maxRetries, 0, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(1)
         }
@@ -67,7 +79,7 @@ describe("Async", () => {
         const recoverableError = SyntaxError
 
         try {
-          await makeRecoverable(source, maxRetries, recoverableError)
+          await makeRecoverable(source, maxRetries, 0, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(maxRetries + 1)
         }

@@ -33,12 +33,22 @@ function getUsers() {
 
 ```
 
+The below will retry 3 times, each time with a delay of 250ms.
+
+```typescript
+function getUsers() {
+  const source = () => http.get("/api/users")
+  return makeRecoverable(source, 3, 250)
+}
+
+```
+
 The below will retry thrice if the error caught is a `SyntaxError`.
 
 ```typescript
 function initService() {
   const source = () => service.init()
-  return makeRecoverable(source, 3, SyntaxError)
+  return makeRecoverable(source, 3, 0, SyntaxError)
 }
 
 ```
