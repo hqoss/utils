@@ -1,6 +1,6 @@
 {
   "name": "@openmaths/utils",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "A collection of light-weight methods and helpers for defensive programming",
   "main": "./dist/main.js",
   "typings": "./dist/main.d.ts",
