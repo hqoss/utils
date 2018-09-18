@@ -1,6 +1,14 @@
-import { makeRecoverable } from "./main"
+import { makeRecoverable, withTimeout } from "./main"
 
 describe("Async", () => {
+  describe("withTimeout", () => {
+    it("resolves after 250ms", async () => {
+      const source = () => Promise.resolve("foo")
+      const val = await withTimeout(source, 250)
+      expect(val).toEqual("foo")
+    })
+  })
+
   describe("makeRecoverable", () => {
     it("throws if `source` is not a function", async () => {
       try {

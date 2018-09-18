@@ -17,9 +17,22 @@ There are 6 main modules available:
 
 Available methods:
 
+* `withTimeout`
 * `makeRecoverable`
 
 ### Examples
+
+#### `withTimeout`
+
+The below will resolve source after 750ms.
+
+```typescript
+function findUserById(id: number) {
+  const source = () => http.get(`/api/users/${id}`)
+  return withTimeout(source, 750)
+}
+
+```
 
 #### `makeRecoverable`
 

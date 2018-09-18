@@ -72,4 +72,4 @@ async function makeRecoverable<T = any>(
   return exec()
 }
 
-export { makeRecoverable }
+export { withTimeout, makeRecoverable }
