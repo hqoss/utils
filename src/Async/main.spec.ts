@@ -1,6 +1,14 @@
-import { makeRecoverable } from "./main"
+import { makeRecoverable, withTimeout } from "./main"
 
 describe("Async", () => {
+  describe("withTimeout", () => {
+    it("resolves after 250ms", async () => {
+      const source = () => Promise.resolve("foo")
+      const val = await withTimeout(source, 250)
+      expect(val).toEqual("foo")
+    })
+  })
+
   describe("makeRecoverable", () => {
     it("throws if `source` is not a function", async () => {
       try {
@@ -47,6 +55,18 @@ describe("Async", () => {
         }
       })
 
+      it("retries after a timeout if delay is configured", async () => {
+        const source = jest.fn(() => Promise.reject(new SyntaxError("Err")))
+        const maxRetries = 3
+        try {
+          await makeRecoverable(source, maxRetries, 100)
+        } catch (err) {
+          expect(source).toHaveBeenCalledTimes(maxRetries + 1)
+          expect(err.name).toEqual("SyntaxError")
+          expect(err.message).toEqual("Err")
+        }
+      })
+
       it("does not retry if retry error configuration does not match error type", async () => {
         const source = jest.fn(() => Promise.reject(new ReferenceError("RefErr")))
 
@@ -54,7 +74,7 @@ describe("Async", () => {
         const recoverableError = TypeError
 
         try {
-          await makeRecoverable(source, maxRetries, recoverableError)
+          await makeRecoverable(source, maxRetries, 0, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(1)
         }
@@ -67,7 +87,7 @@ describe("Async", () => {
         const recoverableError = SyntaxError
 
         try {
-          await makeRecoverable(source, maxRetries, recoverableError)
+          await makeRecoverable(source, maxRetries, 0, recoverableError)
         } catch (err) {
           expect(source).toHaveBeenCalledTimes(maxRetries + 1)
         }
