@@ -25,7 +25,7 @@
     "@types/shortid": "0.0.29",
     "@types/uuid": "3.4.3",
     "@types/uuid-validate": "0.0.0",
-    "jest": "23.5.0",
+    "jest": "23.6.0",
     "prettier": "1.14.2",
     "prettier-standard": "8.0.1",
     "ts-jest": "23.1.4",
