@@ -20,7 +20,7 @@
     "uuid-validate": "0.0.3"
   },
   "devDependencies": {
-    "@types/jest": "23.3.1",
+    "@types/jest": "23.3.2",
     "@types/node": "10.7.1",
     "@types/shortid": "0.0.29",
     "@types/uuid": "3.4.3",
