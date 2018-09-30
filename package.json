@@ -28,7 +28,7 @@
     "jest": "23.5.0",
     "prettier": "1.14.2",
     "prettier-standard": "8.0.1",
-    "ts-jest": "23.1.4",
+    "ts-jest": "23.10.3",
     "tslint": "5.11.0",
     "tslint-config-security": "1.4.0",
     "typescript": "3.0.1"
