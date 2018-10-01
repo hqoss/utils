@@ -7,6 +7,13 @@
 
 A collection of light-weight methods and helpers for defensive programming
 
+## Prereqs & Install
+
+* Node >=9.10.0
+* npm >=6.1.0
+
+Please note that the **TypeScript target is ES6**.
+
 ```sh
 npm install @usefultools/utils
 ```
