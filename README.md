@@ -7,6 +7,12 @@
 
 A collection of light-weight methods and helpers for defensive programming
 
+## Install
+
+```bash
+npm install @usefultools/utils
+```
+
 ## Usage
 
 There are 6 main modules available:
