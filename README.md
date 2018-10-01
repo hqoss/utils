@@ -7,9 +7,7 @@
 
 A collection of light-weight methods and helpers for defensive programming
 
-## Install
-
-```bash
+```sh
 npm install @usefultools/utils
 ```
 
