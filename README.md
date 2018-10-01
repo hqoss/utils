@@ -695,3 +695,17 @@ make test-ci # CI mode / single run
 ```sh
 make format
 ```
+
+## Contributing
+
+If you have comments, complaints, or ideas for improvements, feel free to open an issue or a pull request! See [Contributing guide](./CONTRIBUTING.md) for details about project setup, testing, etc.
+
+If you make or are considering making an app using WatermelonDB, please let us know!
+
+## Author and license
+
+This library was created by [@LITCHI.IO](https://github.com/litchi-io). Main author and maintainer is [Slavo Vojacek](https://github.com/slavovojacek).
+
+Contributors: [Slavo Vojacek](https://github.com/slavovojacek)
+
+`@usefultools/utils` is available under the ISC license. See the [LICENSE file](./LICENSE.txt) for more info.

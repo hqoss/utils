@@ -1,5 +1,4 @@
-import * as id from "shortid"
-import { v4 } from "uuid"
+import { generate, isValid } from "shortid"
 import * as validateUUID from "uuid-validate"
 
 import {
@@ -24,12 +23,6 @@ jest
   .mock("uuid-validate", () => jest.fn())
 
 describe("Helpers", () => {
-  const libs: any = {
-    id,
-    v4,
-    validateUUID,
-  }
-
   describe("noop", () => {
     it("is a function that does not return", () => {
       expect(typeof noop).toEqual("function")
@@ -111,39 +104,30 @@ describe("Helpers", () => {
 
   describe("generateId", () => {
     it("generates a random id", () => {
-      libs.id.generate.mockImplementationOnce(() => "abc-123")
-
       const subject = generateId()
-      expect(subject).toEqual("abc-123")
+      expect(isValid(subject)).toEqual(true)
     })
   })
 
   describe("isValidId", () => {
     it("validates an id", () => {
-      libs.id.isValid.mockImplementationOnce(() => true)
-      libs.id.isValid.mockImplementationOnce(() => false)
-
-      expect(isValidId("foo")).toEqual(true)
+      expect(isValidId(generate())).toEqual(true)
       expect(isValidId("foo")).toEqual(false)
     })
   })
 
   describe("generateUUID", () => {
     it("generates a uuid", () => {
-      libs.v4.mockImplementationOnce(() => "abc-123-def-456")
-
       const subject = generateUUID()
-      expect(subject).toEqual("abc-123-def-456")
+      expect(validateUUID(subject)).toEqual(true)
     })
   })
 
   describe("isValidUUID", () => {
     it("validates a uuid", () => {
       const uuid = "95ecc380-afe9-11e4-9b6c-751b66dd541e"
-      libs.validateUUID.mockImplementationOnce(() => true)
       expect(isValidUUID(uuid)).toEqual(true)
-      libs.validateUUID.mockImplementationOnce(() => false)
-      expect(isValidUUID(uuid)).toEqual(false)
+      expect(isValidUUID("foobar")).toEqual(false)
     })
   })
 

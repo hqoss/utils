@@ -1,4 +1,4 @@
-import * as id from "shortid"
+import { generate, isValid } from "shortid"
 import { v4 } from "uuid"
 import * as validateUUID from "uuid-validate"
 
@@ -55,7 +55,7 @@ function getRandomIntInclusive(min: number, max: number): number {
  * @returns {String}
  */
 function generateId(): string {
-  return id.generate()
+  return generate()
 }
 
 /**
@@ -65,7 +65,7 @@ function generateId(): string {
  * @returns {String}
  */
 function isValidId(val: any): val is string {
-  return id.isValid(val)
+  return isValid(val)
 }
 
 /**
