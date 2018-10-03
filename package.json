@@ -13,7 +13,6 @@
     "test": "make test"
   },
   "dependencies": {
-    "@threestup/monads": "^1.0.4",
     "shortid": "^2.2.13",
     "tslib": "^1.9.3",
     "uuid": "^3.3.2",

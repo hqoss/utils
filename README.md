@@ -22,12 +22,12 @@ npm install @usefultools/utils
 
 There are 6 main modules available:
 
-* [Async](https://github.com/OpenMaths/mod-utils#async)
-* [Conditionals](https://github.com/OpenMaths/mod-utils#conditionals)
-* [Env](https://github.com/OpenMaths/mod-utils#env)
-* [Helpers](https://github.com/OpenMaths/mod-utils#helpers)
-* [Match](https://github.com/OpenMaths/mod-utils#match)
-* [ThrowIf](https://github.com/OpenMaths/mod-utils#throwif)
+* [Async](https://github.com/litchi-io/mod-utils#async)
+* [Conditionals](https://github.com/litchi-io/mod-utils#conditionals)
+* [Env](https://github.com/litchi-io/mod-utils#env)
+* [Helpers](https://github.com/litchi-io/mod-utils#helpers)
+* [Match](https://github.com/litchi-io/mod-utils#match)
+* [ThrowIf](https://github.com/litchi-io/mod-utils#throwif)
 
 ## Async
 
@@ -82,7 +82,7 @@ function initService() {
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Async/main.spec.ts).**
+**Full test Docs [here](https://github.com/litchi-io/mod-utils/blob/master/src/Async/main.spec.ts).**
 
 ---
 
@@ -392,7 +392,7 @@ isEqual(false, true) // false
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Conditionals/main.spec.ts).**
+**Full test Docs [here](https://github.com/litchi-io/mod-utils/blob/master/src/Conditionals/main.spec.ts).**
 
 ---
 
@@ -407,7 +407,7 @@ Available methods:
 NOTE: These methods are namespaced under `env`. The usage is therefore
 
 ```typescript
-import { env } from "@openmaths/utils"
+import { env } from "@usefultools/utils"
 
 env.getAsBool(...)
 env.getAsInt(...)
@@ -468,7 +468,7 @@ env.getAsBool("IS_DEV", env) // false
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Env/main.spec.ts).**
+**Full test Docs [here](https://github.com/litchi-io/mod-utils/blob/master/src/Env/main.spec.ts).**
 
 ---
 
@@ -578,7 +578,7 @@ fill(4) // [0, 1, 2, 3]
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Helpers/main.spec.ts).**
+**Full test Docs [here](https://github.com/litchi-io/mod-utils/blob/master/src/Helpers/main.spec.ts).**
 
 ---
 
@@ -637,7 +637,7 @@ getMessage(1333) // "Unfortunately, we cannot tell what year it is."
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/Match/main.spec.ts).**
+**Full test Docs [here](https://github.com/litchi-io/mod-utils/blob/master/src/Match/main.spec.ts).**
 
 ---
 
@@ -681,7 +681,7 @@ throwIfMissing(someValue, '`someValue` missing!', ReferenceError); // throws Ref
 
 ```
 
-**Full test Docs [here](https://github.com/OpenMaths/mod-utils/blob/master/src/ThrowIf/main.spec.ts).**
+**Full test Docs [here](https://github.com/litchi-io/mod-utils/blob/master/src/ThrowIf/main.spec.ts).**
 
 ---
 
