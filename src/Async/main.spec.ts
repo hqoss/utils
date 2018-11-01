@@ -1,4 +1,4 @@
-import { makeRecoverable, withTimeout } from "./main"
+import { makeRecoverable, timeout, withTimeout } from "./main"
 
 describe("Async", () => {
   describe("withTimeout", () => {
@@ -6,6 +6,25 @@ describe("Async", () => {
       const source = () => Promise.resolve("foo")
       const val = await withTimeout(source, 250)
       expect(val).toEqual("foo")
+    })
+  })
+
+  describe("timeout", () => {
+    it("resolves original promise within time limit", async () => {
+      const source = new Promise((resolve) => setTimeout(() => resolve("foo"), 250))
+      const res = await timeout(source, 500)
+      expect(res).toEqual("foo")
+    })
+
+    it("rejects after 250ms", async () => {
+      const source = new Promise((resolve) => setTimeout(() => resolve("foo"), 500))
+
+      try {
+        await timeout(source, 250)
+      } catch (err) {
+        expect(err instanceof Error).toEqual(true)
+        expect(err.message).toEqual("Async operation timed out")
+      }
     })
   })
 

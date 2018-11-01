@@ -34,6 +34,7 @@ There are 6 main modules available:
 Available methods:
 
 * `withTimeout`
+* `timeout`
 * `makeRecoverable`
 
 ### Examples
@@ -46,6 +47,18 @@ The below will resolve source after 750ms.
 function findUserById(id: number) {
   const source = () => http.get(`/api/users/${id}`)
   return withTimeout(source, 750)
+}
+
+```
+
+#### `timeout`
+
+The below will reject if asyncOperation takes more than 0.5 seconds.
+
+```typescript
+function work() {
+  const source = asyncOperation() // can take 0-2 seconds
+  return timeout(source, 500)
 }
 
 ```

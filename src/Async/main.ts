@@ -20,6 +20,22 @@ function withTimeout<T>(source: Source<T>, timeoutMs: number): Promise<T> {
 }
 
 /**
+ * Races a Promise against a timeout
+ *
+ * @param  {<T>() => Promise<T>} source
+ * @param  {Integer} timeoutMs
+ * @returns {Promise<T>}
+ */
+function timeout<T>(source: Promise<T>, timeoutMs: number): Promise<T> {
+  return Promise.race([
+    new Promise((_resolve, reject) =>
+      setTimeout(() => reject(new Error("Async operation timed out")), timeoutMs),
+    ),
+    source,
+  ]) as Promise<T>
+}
+
+/**
  * Makes a Promise-returning function recoverable (attempts retries)
  *
  * @param  {<T>() => Promise<T>} source
@@ -72,4 +88,4 @@ async function makeRecoverable<T = any>(
   return exec()
 }
 
-export { withTimeout, makeRecoverable }
+export { withTimeout, timeout, makeRecoverable }
