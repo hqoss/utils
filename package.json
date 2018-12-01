@@ -13,24 +13,24 @@
     "test": "make test"
   },
   "dependencies": {
-    "shortid": "^2.2.13",
+    "shortid": "^2.2.14",
     "tslib": "^1.9.3",
     "uuid": "^3.3.2",
     "uuid-validate": "0.0.3"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.1",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.11",
     "@types/shortid": "0.0.29",
     "@types/uuid": "^3.4.4",
     "@types/uuid-validate": "0.0.0",
     "jest": "^23.6.0",
-    "prettier": "^1.14.3",
+    "prettier": "^1.15.3",
     "prettier-standard": "8.0.1",
-    "ts-jest": "^23.10.4",
+    "ts-jest": "^23.10.5",
     "tslint": "5.11.0",
-    "tslint-config-security": "^1.12.0",
-    "typescript": "^3.1.5"
+    "tslint-config-security": "^1.13.0",
+    "typescript": "^3.2.1"
   },
   "repository": {
     "type": "git",
