@@ -1,6 +1,6 @@
 {
   "name": "@usefultools/utils",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "description": "A collection of light-weight methods and helpers for defensive programming",
   "main": "./dist/main.js",
   "typings": "./dist/main.d.ts",
