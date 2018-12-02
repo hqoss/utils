@@ -1,11 +1,12 @@
 [![CircleCI](https://circleci.com/gh/litchi-io/utils.svg?style=svg)](https://circleci.com/gh/litchi-io/utils)
 [![codecov](https://codecov.io/gh/litchi-io/utils/branch/master/graph/badge.svg)](https://codecov.io/gh/litchi-io/utils)
 [![npm version](https://img.shields.io/npm/v/@usefultools/utils.svg)](https://www.npmjs.com/package/@usefultools/utils)
+[![GuardRails](https://badges.production.guardrails.io/litchi-io/utils.svg)](https://www.guardrails.io)
 [![Security Responsible Disclosure](https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg)](https://github.com/litchi-io/utils/blob/master/SECURITY.md)
 
 # JavaScript / TypeScript Utilities
 
-A collection of light-weight methods and helpers for defensive programming
+A collection of light-weight methods and helpers for defensive programming.
 
 ## Prereqs & Install
 
@@ -728,8 +729,6 @@ make format
 ## Contributing
 
 If you have comments, complaints, or ideas for improvements, feel free to open an issue or a pull request! See [Contributing guide](./CONTRIBUTING.md) for details about project setup, testing, etc.
-
-If you make or are considering making an app using WatermelonDB, please let us know!
 
 ## Author and license
 
