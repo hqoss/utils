@@ -1,4 +1,4 @@
-# 🗝 Type Guards
+# 🛡 Type Guards
 
 A comprehensive collection of type guards for TypeScript and JavaScript.
 
@@ -123,7 +123,7 @@ if (isSymbol(val)) {
 #### `isUndefined`
 
 ```typescript
-let val: null | undefined
+let val: undefined | null
 
 if (isUndefined(val)) {
   // TypeScript will infer val: undefined
