@@ -7,7 +7,6 @@ A responsible disclosure policy helps protect the project and its users from sec
 All security bugs are taken seriously and are considered as top priority. 
 Your efforts to responsibly disclose your findings are appreciated and will be taken into account to acknowledge your contributions.
 
-
 ## Reporting a Security Issue
 
 Any security related issue should be reported to the [Node.js Ecosystem](https://hackerone.com/nodejs-ecosystem
