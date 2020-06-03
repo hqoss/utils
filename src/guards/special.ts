@@ -1,4 +1,4 @@
-// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures.
+// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
 
 export const isNull = <T>(term: T | null): term is null => {
   return term === null;
@@ -8,7 +8,9 @@ export const isFunction = <T extends Function, U>(term: T | U): term is T => {
   return typeof term === "function";
 };
 
-export const isObject = <T extends object, U>(term: T | U): term is NonNullable<T> => {
+export const isObject = <T extends object, U>(
+  term: T | U,
+): term is NonNullable<T> => {
   return !isNull(term) && typeof term === "object" && !Array.isArray(term);
 };
 

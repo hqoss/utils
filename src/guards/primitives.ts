@@ -1,11 +1,4 @@
-// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures.
-//
-// undefined : typeof instance === "undefined"
-// Boolean : typeof instance === "boolean"
-// Number : typeof instance === "number"
-// String : typeof instance === "string"
-// BigInt : typeof instance === "bigint"
-// Symbol : typeof instance === "symbol"
+// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
 
 export const isUndefined = <T>(term: T | undefined): term is undefined => {
   return typeof term === "undefined";

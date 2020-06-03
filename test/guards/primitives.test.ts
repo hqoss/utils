@@ -69,12 +69,12 @@ test("isString", (t) => {
   // t.is(primitives.isString(getBigInt()), false)
   t.is(primitives.isString(getSymbol()), false);
 
-  let val: string | number
+  let val: string | number;
 
   if (primitives.isString(val)) {
-    console.log(val)
+    console.log(val);
   } else {
-    console.log(val)
+    console.log(val);
   }
 });
 
