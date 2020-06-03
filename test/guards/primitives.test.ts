@@ -68,14 +68,6 @@ test("isString", (t) => {
   t.is(primitives.isString(getString()), true);
   // t.is(primitives.isString(getBigInt()), false)
   t.is(primitives.isString(getSymbol()), false);
-
-  let val: string | number;
-
-  if (primitives.isString(val)) {
-    console.log(val);
-  } else {
-    console.log(val);
-  }
 });
 
 // test("isBigInt", t => {
